@@ -38,6 +38,24 @@ Hands-On System Programming with Linux - Oct 2018
 https://subscription.packtpub.com/book/networking_and_servers/9781788998475
 
 
+* Packt interactive courses
+
+https://subscription.packtpub.com/interactive-courses
+
+** Packt interactive python courses
+
+https://subscription.packtpub.com/interactive-courses/programming/learn-python-programming
+
+https://subscription.packtpub.com/interactive-courses/data/beginning-python
+
+https://subscription.packtpub.com/interactive-courses/data/intermediate-python
+
+https://subscription.packtpub.com/interactive-courses/data/data-science-projects-with-python
+
+https://subscription.packtpub.com/interactive-courses/web-development/websites-with-python-flask
+
+https://subscription.packtpub.com/interactive-courses/programming/building-a-blackjack-gui-in-python
+
 
 * Articles / Blogs
 
