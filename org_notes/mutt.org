@@ -1,0 +1,79 @@
+#+TITLE:    Mutt – A Command Line Email Client to Send Mails from Terminal
+#+INCLUDE:  "common.inc"
+
+
+Mutt – A Command Line Email Client to Send Mails from Terminal
+
+https://www.tecmint.com/send-mail-from-command-line-using-mutt-command/
+
+
+ apt-get install mutt
+
+Configuration files
+
+Configuration files of Mutt Email client.
+
+    Main Configuration file: To make changes globally for all users For mutt, you can make changes in its mail configuration file “/etc/Muttrc“.
+    User Configuration file of Mutt : If you want to set some specific configuration for a particular user for Mutt, you can configure those settings in ~/.muttrc or ~/.mutt/muttrc files.
+
+
+
+
+https://www.linux.com/tutorials/setup-mutt-gmail-centos-and-ubuntu/
+
+
+
+
+** Gmail config
+
+n gmail, go click the gear icon, go to Settings, go to the tab Forwarding POP/IMAP, and click the Configuration instructions link in IMAP Access row.
+
+Then click I want to enable IMAP. At the bottom of the page, under the paragraph about configuring your mail client, select Other. Note the mail server information and use that information for further settings as shown in the next section.
+
+Before proceeding further visit https://www.google.com/settings/security/lesssecureapps and checkTurn on radio button.
+
+
+Setup
+
+Edit the ~/.muttrc and add the following:
+
+#+BEGIN_EXAMPLE
+
+set realname = "<first and last name>"
+set from = "<gmail username>@gmail.com"
+set use_from = yes
+set envelope_from = yes
+
+set smtp_url = "smtps://<gmail username>@gmail.com@smtp.gmail.com:465/"
+set smtp_pass = "<app password>"
+set imap_user = "<gmail username>@gmail.com"
+set imap_pass = "<app password>"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set ssl_force_tls = yes
+
+# G to get mail
+bind index G imap-fetch-mail
+set editor = "vim"
+set charset = "utf-8"
+set record = ''
+
+#+END_EXAMPLE
+
+Most of the config is pretty trivial but the <app password> is where I got stuck. Most online tutorials instructs to simply put your Gmail password but that won’t work. Instead head here:
+
+https://security.google.com/settings/security/apppasswords
+
+Once you login, you can generate a new app specific password for this use case. This way, you’ll also won’t have to worry about saving your main password in a plaintext file.
+
+After generating, simply plop it into the ~/.muttrc file and run mutt and you will see it download all emails from your inbox. Most of the key are indicated at the top of the screen so it should be relatively intuitive.
+
+Visit https://gitlab.com/muttmua/mutt/wikis/home for more detailed guides on controls and such.
+
+Edit: After a short while you’ll realize that Mutt is completely pointless because most modern emails are made with HTML templates which means you’ll just see a bunch of code. Maybe there’s a plugin solution?
+
+
+* Extra
+
+https://webgefrickel.de/blog/a-modern-mutt-setup
+https://webgefrickel.de/blog/a-modern-mutt-setup-part-two

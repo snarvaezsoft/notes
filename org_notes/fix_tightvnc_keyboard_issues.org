@@ -1,0 +1,113 @@
+#+TITLE:    Fix TightVNC keyboard issues
+#+INCLUDE:  "common.inc"
+
+
+* Fix TightVnc keyboard issues.
+
+Issue: after logging into a VNC remote desktop with tightvnc server, the Alt key on Emacs Gui is not working.
+
+
+** Solution 1: When starting tightvncserver, use the option -compatiblekbd, example
+
+
+#+BEGIN_SRC bash
+
+vncserver :1 -compatiblekbd
+
+#+END_SRC
+
+** Solution 2: use xmodmap to make Alt key works with Emacs via VNC :
+
+if you are using TightVNC as VNC server, the default configuration will map Meta_L and Meta_R to mod4, Alt_L and Alt_R to mod1. It’s VNC server problem that the ALT key doesn’t work. use xmodmap to solve it.
+
+Here we can see the DEFAULT config:
+
+#+BEGIN_SRC bash
+
+seba@desktop2:~$ xmodmap
+xmodmap:  up to 2 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0xa),  Shift_R (0xb)
+lock
+control     Control_L (0x8),  Control_R (0x9)
+mod1        Alt_L (0xe),  Alt_R (0xf)
+mod2
+mod3
+mod4        Meta_L (0xc),  Meta_R (0xd)
+mod5
+
+#+END_SRC
+
+You can load the following file with xmodmap, or run some of the commands directly on the command line:
+
+~/my_xmodmap
+
+#+BEGIN_SRC bash
+
+!! Note the ! are comment characters
+
+!! suggested to make Emacs work under VNC
+keysym Alt_L = Meta_L
+keysym Alt_R = Meta_R
+
+!! xmodmap -e 'keysym Alt_L = Meta_L' -e 'keysym Alt_R = Meta_R'
+!!
+!! some environments still cant handle alt key properly
+!! add this:
+!!
+clear Mod1
+add Mod1 = Meta_L Meta_R
+
+!! or
+!! xmodmap -e "clear Mod1" -e "add Mod1 = Meta_L Meta_R"
+
+#+END_SRC
+
+This is the line that worked for me on TightVNC running on Ubuntu 16.04 :
+
+#+BEGIN_SRC bash
+seba@desktop2:~$ xmodmap -e 'keysym Alt_L = Meta_L' -e 'keysym Alt_R = Meta_R'
+#+END_SRC
+
+We can check now that the mappings were changed:
+
+#+BEGIN_SRC bash
+seba@desktop2:~$ xmodmap
+xmodmap:  up to 2 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0xa),  Shift_R (0xb)
+lock
+control     Control_L (0x8),  Control_R (0x9)
+mod1        Meta_L (0xe),  Meta_R (0xf)
+mod2
+mod3
+mod4        Meta_L (0xc),  Meta_R (0xd)
+mod5
+#+END_SRC
+
+After that, I needed to close Emacs Gui and open it again and the Alt key started to work normally 🙂 Happy ending.
+
+Original from
+
+http://stackoverflow.com/questions/848878/how-do-i-remap-meta-to-alt Fixing the tab key on TightVNC and xfce4
+
+Setting up a simple VNC server such as TightVNC (tightvncserver) has gotten a lot harder in recent Ubuntu distributions, because the tab key seems not to work properly! I find that using the command line is nearly impossible when the tab key doesn’t work in VNC. The problem seems to depend on the window manager in use (I use xfce4). After some hunting, it became apparent that the default window manager key bindings global binds the ““-Tab combination to a feature known as “switching windows within the same application.” I don’t know what a “Super” key is and apparently neither does the system, because it always treats the Tab key as ““-Tab, triggering this feature rather than passing the Tab key event through to the application. Clearing this key from xfce4-settings-manager => window manager => keyboard fixes the problem, as does the following command line equivalent:
+
+xfconf-query -c xfce4-keyboard-shortcuts -p /xfwm4/custom/’<’Super’>’Tab -r
+
+original from:
+
+http://blog.zerosum42.com/2011/10/tech-fixing-tab-key-in-vnc.html
+
+* TightVNC Change default screen resolution
+default desktop resolution can be changed in the following file:
+
+#+BEGIN_SRC bash
+cat ~/.vnc/tightvncserver.conf
+
+$geometry = "1280x800" ;
+#+END_SRC
+
+* TightVNC and screensavers
+
+IMPORTANT: change screensaver preferences, mode: blank screen only. blank after: 5 minutes other screensaver modes use too much CPU and bandwidth, making the remote desktop unresponsive.

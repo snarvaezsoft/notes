@@ -1,0 +1,277 @@
+#+TITLE:    WordPress Development
+#+INCLUDE:  "common.inc"
+
+
+* WordPress Links to documentation
+
+https://codex.wordpress.org/
+
+http://hookr.io
+
+https://kinsta.com/learn/page-speed/
+
+https://kinsta.com/learn/speed-up-wordpress/
+
+https://kinsta.com/best-wordpress-plugins/
+
+https://kinsta.com/blog/optimize-images-for-web/
+
+https://wordpress.org/plugins/search/convert+webp/
+
+** Proxy to HTTPS
+
+add to wp-config.php
+
+#+BEGIN_SRC php
+if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
+  $_SERVER['HTTPS'] = 'on';
+  $_SERVER['SERVER_PORT'] = 443;
+}
+#+END_SRC
+
+
+** Optimize WordPress Revisions
+
+https://kinsta.com/knowledgebase/wordpress-revisions/
+
+https://wordpress.org/plugins/wp-sweep/
+
+https://wp-cli.org/
+
+*** Delete WordPress Revisions With WP-CLI
+
+#+BEGIN_SRC bash
+$ wp post delete --force $(wp post list --post_type='revision' --format=ids)
+#+END_SRC
+
+*** Limit Number of WordPress Revisions
+
+Open your wp-config.php file.
+The code below needs to be inserted above the ‘ABSPATH’ otherwise it won’t work. Again, you can change the number to however many of revisions you want to keep stored in your database per page or post.
+
+#+BEGIN_SRC php
+define('WP_POST_REVISIONS', 3);
+#+END_SRC
+
+
+
+** How to Speed up Your WordPress Site (Ultimate 2019 Guide)
+https://kinsta.com/learn/speed-up-wordpress/
+
+** WordPress Cache
+
+https://kinsta.com/blog/wordpress-cache/
+
+#+BEGIN_SRC bash
+sudo apt-cache search opcache
+php7.2-opcache - Zend OpCache module for PHP
+#+END_SRC
+
+https://www.php.net/manual/en/opcache.installation.php
+
+
+The Definitive PHP 5.6, 7.0, 7.1, 7.2 & 7.3 Benchmarks (2019)
+https://kinsta.com/blog/php-benchmarks/
+
+
+
+**  WP Super Cache Plugin: Settings & Configuration Guide to use in 2019
+https://www.shoutmeloud.com/wp-super-cache-wordpress-optimization-plugin.html
+
+** WordPress CDN
+
+https://kinsta.com/blog/wordpress-cdn/
+
+** How to Eliminate Render-Blocking JavaScript and CSS
+https://kinsta.com/blog/eliminate-render-blocking-javascript-css/
+
+** How to Use Redis as a Persistent Object Cache for WordPress
+https://kinsta.com/knowledgebase/redis-cache/
+
+** How to Fix the Leverage Browser Caching Warning in WordPress
+https://kinsta.com/blog/leverage-browser-caching/
+
+
+* wp-cli useful examples
+
+
+** Installing WordPress
+
+I use WP-CLI a lot to set up test environments, the first step of which is a vanilla installation. Here is a list of commands I run:
+
+#+BEGIN_SRC bash
+
+wp core download
+wp core config --dbname=mydbname --dbuser=mydbuser --dbpass=mydbpass --dbhost=localhost --dbprefix=whebfubwef_ --extra-php <<PHP
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+PHP
+wp db create
+wp core install --url=http://siteurl.com --title=SiteTitle --admin_user=username --admin_password=mypassword --admin_email=my@email.com
+
+#+END_SRC
+
+
+** Reinstall WordPress Core
+
+You can also reinstall WordPress core using WP-CLI. The following command would download WordPress core without the default themes and plugins.
+
+#+BEGIN_SRC bash
+wp core download --skip-content --force
+#+END_SRC
+
+** Change WordPress URL
+
+There are many reasons why you might need or want to change your WordPress URL. Perhaps you are changing domains, moving to a subdomain, updating from www to non-www, moving files around, or even migrating from HTTP to HTTPS. Whatever the case may be, you can use easily use the wp option update command for this. Here is an example below:
+
+#+BEGIN_SRC bash
+wp option update home 'http://example.com'
+wp option update siteurl 'http://example.com'
+#+END_SRC
+
+** List of Current Plugins with Details
+
+#+BEGIN_SRC bash
+wp plugin list
+#+END_SRC
+
+** Installing Multiple Plugins
+
+Note that the plugin names come from their name in the repository. The easiest way to figure this out is to visit their page and look at the URL or to use wp plugin search searchterm which will give you a list in the terminal.
+
+#+BEGIN_SRC bash
+wp plugin install advanced-custom-fields jetpack ninja-forms --activate
+#+END_SRC
+
+
+You can also install older versions of WordPress plugins if needed with the --version attribute.
+#+BEGIN_SRC bash
+wp plugin install wordpress-seo --version=4.8 --activate
+#+END_SRC
+
+
+Even cooler, you can install plugins from remote files, not just the repository which is handy if you’re developing a plugin, or using a premium plugin. The following command installs two plugins from the repository and one from an Amazon S3 server.
+
+#+BEGIN_SRC bash
+wp plugin install advanced-custom-fields jetpack https://d1qas1txbec8n.cloudfront.net/wp-content/uploads/2015/06/23073607/myplugin.zip --activate
+#+END_SRC
+
+
+** Deactivate Multiple Plugins
+To deactivate a single plugin you can run the following command.
+
+#+BEGIN_SRC bash
+wp plugin deactivate wordpress-seo
+#+END_SRC
+
+To deactivate all your plugins at once run the following command.
+
+#+BEGIN_SRC bash
+wp plugin deactivate --all
+#+END_SRC
+
+** Update Plugins
+You can also manually update WordPress plugins. Example below:
+#+BEGIN_SRC bash
+wp plugin update wordpress-seo
+#+END_SRC
+
+** Database Search And Replace
+
+One of the main reasons it is difficult to migrate a site by just copy-pasting a database is that the database contains serialized arrays. If you need to replace all instances of http://testsite.com with http://livewebsite.com your serialized arrays will not make sense because the string count won’t match up.
+
+The search-replace command unserializes arrays first, then performs the search and replace, then re-serializes the arrays. You can get this done with a simple command.
+Additional parameters allow you to do a lot more, including preview what will be replaced by using --dry-run.
+
+#+BEGIN_SRC bash
+wp search-replace oldstring newstring
+#+END_SRC
+
+** Import And Export
+
+There are two ways to export content with WP-CLI. You can create an XML file, just like the WordPress export tool does, or you can export/import the raw database. I find the later a lot more useful in my daily routine, it comes in handy when syncing sites.
+
+wp db export is all you need to do to create a SQL file and wp db import file.sql is all you need to import it. Works like a charm, just be careful not to overwrite anything you need, importing will basically dump the existing database and use the supplied SQL file instead.
+
+#+BEGIN_SRC bash
+wp db export
+wp db import file.sql
+#+END_SRC
+
+
+** DB Queries
+
+https://developer.wordpress.org/cli/commands/db/query/
+
+#+BEGIN_SRC bash
+echo "desc wp_comments" | wp --allow-root db query
+
+# Execute a query stored in a file
+$ wp db query < debug.sql
+
+# Check all tables in the database
+$ wp db query "CHECK TABLE $(wp db tables | paste -s -d, -);"
+
+# Print last comment
+echo "select * from wp_comments order by comment_ID desc LIMIT 1 \G" | wp --allow-root db query
+
+#+END_SRC
+
+* Your WordPress Theme Matters
+
+** GeneratePress
+
+GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind. Built by Tom Usborne, a developer from Canada. It is actively updated and well supported. Even a few Kinsta team members use GeneratePress for their projects.
+
+https://generatepress.com/
+
+https://wordpress.org/themes/generatepress/
+
+
+** OceanWP
+
+The OceanWP theme is lightweight and highly extendable. It enables you to create almost any type of website, such as a blog, portfolio, business website or WooCommerce storefront with a beautiful & professional design. Built by Nicolas Lecocq, it is also actively updated and well supported.
+
+https://oceanwp.org/
+
+https://wordpress.org/themes/oceanwp/
+
+** Astra
+
+Astra is a fast, fully customizable & beautiful theme suitable for blogs, personal portfolios, business websites, and WooCommerce storefronts. It is very lightweight (less than 50 KB on frontend) and offers unparalleled speed. Built by the team at Brainstorm Force, it is actively updated and well supported. You might recognize them as the creators of the popular All In One Schema Rich Snippets plugin which has been around for many years.
+
+
+** Warning About Page Builders
+
+As you probably noticed, OceanWP and Astra both required page builders to use their site library themes. Here are a few things to keep in mind when using a page builder plugin:
+
+    Some page builders might increase load time on your site. This is because they have to load additional CSS and JS to make things work for you without code. That is how the magic happens! We always recommend speed testing your WordPress site before and after installing a page builder.
+    You’re making committing and locking yourself into that page builder for design. Make sure you pick one that is regularly updated and has everything you need for the long haul.
+
+
+
+
+
+* TODO
+
+** Trellis, Bedrock, Sage are the best thing to ever happen to any developer working with WordPress. ??
+
+https://kinsta.com/blog/bedrock-trellis/
+
+https://roots.io/bedrock/
+https://roots.io/trellis/docs/installing-trellis/
+
+
+** The Twelve-factor methodology
+
+https://12factor.net/
+
+
+** Grav is a modern open source flat-file CMS
+
+https://getgrav.org
+
+
+** Francesco Carlucci blog
+
+https://francescocarlucci.com/blog/

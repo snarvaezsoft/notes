@@ -1,0 +1,95 @@
+#+TITLE:    Command Line Tools
+#+INCLUDE:  "common.inc"
+
+
+https://www.freecodecamp.org/news/tag/terminal/
+
+* convert pdf to txt
+
+https://www.linuxuprising.com/2019/05/how-to-convert-pdf-to-text-on-linux-gui.html
+
+Convert PDF to text with pdftotext (command line)
+
+pdftotext is a command line utility that converts PDF files to plain text. It has many options, including the ability to specify the page range to convert, maintain the original physical layout of the text as best as possible, set line endings (unix, dos or mac), and even work with password-protected PDF files.
+
+pdftotextis part of the poppler / poppler-utils / poppler-tools package (depending on the Linux distribution you're using). Install this package as follows:
+
+ * Debian, Ubuntu, Linux Mint, and other Debian/Ubuntu-based Linux distributions:
+
+#+BEGIN_SRC bash
+sudo apt install poppler-utils
+
+pdftotext  the_file.pdf
+#+END_SRC
+
+
+* improve-your-workflow-with-these-awesome-cli-tools
+
+https://www.freecodecamp.org/news/improve-your-workflow-with-these-awesome-cli-tools-fc3750cbb2bf/
+
+** Thyme — Console Pomodoro Timer
+
+The Pomodoro Technique was developed by Francesco Cirillo. This technique really helps with efficiency and time management. Now, Thyme is a tool that helps bring this technique to your terminal alongside big customizable options.
+
+
+** Moro — Work Hours Tracker
+
+A command line tool for tracking work hours, as simple as it can get.
+
+
+* Development
+
+** Wuzz — HTTP Inspector
+
+Think of a terminalized Postman. Wuzz is an Interactive cli tool for HTTP inspection.
+
+** FX — JSON Viewer
+
+FX is the go-to tool for JSON processing and viewing. It’s really impressive along with all its execution commands. I’m still looking for its web/desktop-based counterpart.
+
+
+** Serve — Fastest CLI file serving utility
+
+Maybe you think I’m over exaggerating. Well, uhm, I’m not. Remember when you used to download python’s simpleHTTPServer or the web server for chrome app each time you needed to set up a static site in localhost? That’s all past tense. With a command as simple as npx serve directly from the folder of your static site, you get served!
+
+https://github.com/zeit/serve
+
+** howdoi —Your StackOverFlow quickie
+
+It best describes itself this way “instant coding answers via the command line”.
+
+https://github.com/gleitz/howdoi
+
+** Terminalizer & Asciinema — Terminal Recorders
+
+    Terminalizer helps you record your terminal sessions and generate gif images. This really helps to show how a command is used.
+
+https://github.com/faressoft/terminalizer
+
+https://asciinema.org/
+
+** TextMeme
+
+Generate good looking text memes like the one below, right from your terminal
+
+** CLI Typer —Practice Dactylography like in 2003
+
+Practice touch typing in the commandline and measure your skills.
+
+
+* Miscellaneous
+
+** Speed test — Internet Speed Test
+
+Git is acting strange? Maybe you need a quick connection test. Let speed test ping from your terminal.
+
+** Overtime-cli
+
+Easy time-overlap tables for remote teams.
+
+
+* Other Lists to check
+
+**  https://github.com/agarrharr/awesome-cli-apps
+**  https://github.com/alebcay/awesome-shell
+**  http://reddit.com/r/commandline

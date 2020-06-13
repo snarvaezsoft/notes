@@ -1,0 +1,71 @@
+#+TITLE:    Nginx - Ubuntu 20.04 - WordPress
+#+INCLUDE:  "common.inc"
+
+* Resources
+
+https://www.digitalocean.com/community/users/erikaheidi
+
+
+How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu 20.04
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04
+
+
+Tested on
+
+- Ubuntu 20.04
+- Installed packages:
+  - nginx-extras                          1.17.10-0ubuntu1
+  - php7.4-fpm                            7.4.3-4ubuntu2.2
+
+
+* Nginx - WordPress Config for Pretty Permalinks
+
+#+BEGIN_EXAMPLE
+
+      server {
+
+        listen 80 ;
+        listen [::]:80 ;
+
+       root /home/vhosts/d01.example.com ;
+
+        # Add index.php to the list if you are using PHP
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name d01.example.com ;
+
+#       location / {
+#               # First attempt to serve request as file, then
+#               # as directory, then fall back to displaying a 404.
+#               try_files $uri $uri/ =404;
+#       }
+
+        location / {
+                #  Following line allows WordPress Pretty Permalinks
+                try_files $uri $uri/  /index.php?$args;
+        }
+
+       # pass PHP scripts to FastCGI server
+        #
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+
+                # With php-fpm (or other unix sockets):
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+                # With php-cgi (or other tcp sockets):
+                #fastcgi_pass 127.0.0.1:9000;
+        }
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #       deny all;
+        #}
+}
+
+
+
+
+#+END_EXAMPLE

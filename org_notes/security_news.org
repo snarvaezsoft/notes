@@ -1,0 +1,29 @@
+#+TITLE:    Security News
+#+INCLUDE: "common.inc"
+
+
+- Packet Storm Security: https://packetstormsecurity.com/
+- The Hacker News: http://thehackernews.com/
+
+Links to general tech news sites are as follows:
+
+- The INQUIRER: https://www.theinquirer.net/
+- The Register: http://www.theregister.co.uk/
+- ZDNet: http://www.zdnet.com/
+
+You can check out some general Linux learning resources as well. Linux News Site:
+
+- LXer: http://lxer.com/
+- BeginLinux Guru on YouTube: https://www.youtube.com/channel/UC88eard_2sz89an6unmlbeA
+
+
+==================================================
+
+TOOLS
+
+Metasploitable
+https://metasploit.help.rapid7.com/docs/metasploitable-2-exploitability-guide
+
+
+Metasploit
+https://metasploit.help.rapid7.com/docs

@@ -1,0 +1,93 @@
+#+TITLE: ssh
+#+INCLUDE:  "common.inc"
+
+* SSH Useful links
+
+https://helpful.knobs-dials.com/index.php/SSH_-_tunnels,_X_forwarding
+
+
+
+* How do I get the public key of an pem file?
+
+How do I extract my public key, from a .pem file?
+
+#+BEGIN_SRC bash
+
+ssh-keygen -f private.pem -y > public.pub
+
+#+END_SRC
+
+* X11Forwarding
+
+#+BEGIN_EXAMPLE
+
+
+What does "X11UseLocalhost no" do?
+
+I found that I can't ssh (with X11 port forwarding) from my home
+FC4/linux box to a bsd machine, run xclients on the bsd machine, and
+have them X display back to my home machine without specifying the
+"X11UseLocalhost no" option in the /etc/ssh/sshd_config file.
+
+I don't understand what the manpage says about this option. Can
+someone please explain?
+
+
+When doing X forwarding, sshd listens on a TCP socket for connections from
+X clients.  Normally, it will accept connections addressed to the loopback
+address only (127.0.0.1), restricting it to clients on the local host.
+X11UseLocalhost no means it will accept connections from anywhere.
+
+
+X11Forwarding
+-------------
+
+
+Make sure that:
+
+    You've xauth installed on the server (see: xauth info/xauth list).
+
+    On the server your /etc/ssh/sshd_config file have these lines:
+
+    X11Forwarding yes
+    X11DisplayOffset 10
+    X11UseLocalhost no
+
+    On the client side your ~/.ssh/config file have these lines:
+
+    Host *
+      ForwardAgent yes
+      ForwardX11 yes
+
+    On the client side, you've X server installed (e.g. macOS: XQuartz; Windows: Xming).
+
+Then to do X11 forwarding using SSH, you need to add -X to your ssh command, e.g.
+
+ssh -v -X user@host
+
+then verify that your DISPLAY is not empty by:
+
+echo $DISPLAY
+
+If it is, then having verbose parameter for ssh (-v), check for any warnings, e.g.
+
+debug1: No xauth program.
+Warning: untrusted X11 forwarding setup failed: xauth key data not generated
+
+In case you've got untrusted X11 as shown above, then try -Y flag instead (if you trust the host):
+
+ssh -v -Y user@host
+
+See: What does “Warning: untrusted X11 forwarding setup failed: xauth key data not generated” mean when ssh'ing with -X?
+
+In case you've warning: No xauth data, you may try to generate a new .Xauthority file, e.g.
+
+xauth generate :0 . trusted
+xauth list
+
+See: Create/rebuild a new .Xauthority file
+
+If you've got a different warnings than above, follow the further clues.
+
+
+#+END_EXAMPLE

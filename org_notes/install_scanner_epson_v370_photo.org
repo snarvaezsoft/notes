@@ -1,0 +1,63 @@
+#+TITLE:    Install Scanner Epson V370 Photo  on Ubuntu 18.04
+#+INCLUDE: "common.inc"
+
+#+BEGIN_EXAMPLE
+
+Install required package sane
+
+ii  sane                                   1.0.14-12build1          amd64                    scanner graphical frontends
+ii  sane-utils                             1.0.27-1~experimental3ub amd64                    API library for scanners -- utilities
+
+#+END_EXAMPLE
+
+https://epson.com/Support/Scanners/Perfection-Series/Epson-Perfection-V370/s/SPT_B11B207221?review-filter=Linux
+
+http://support.epson.net/linux/en/iscan.php?model=perfection-v370&version=1.0.1
+
+
+#+BEGIN_EXAMPLE
+
+universo@universo-A6:~/Downloads/scanner_epson_v370$ sudo sane-find-scanner
+
+  # sane-find-scanner will now attempt to detect your scanner. If the
+  # result is different from what you expected, first make sure your
+  # scanner is powered up and properly connected to your computer.
+
+  # No SCSI scanners found. If you expected something different, make sure that
+  # you have loaded a kernel SCSI driver for your SCSI adapter.
+
+found USB scanner (vendor=0x04b8 [EPSON], product=0x014a [EPSON Perfection V37/V370]) at libusb:006:002
+  # Your USB scanner was (probably) detected. It may or may not be supported by
+  # SANE. Try scanimage -L and read the backend's manpage.
+
+  # Not checking for parallel port scanners.
+
+  # Most Scanners connected to the parallel port or other proprietary ports
+  # can't be detected by this program.
+
+#+END_EXAMPLE
+
+
+#+BEGIN_EXAMPLE
+
+universo@universo-A6:~/Downloads/scanner_epson_v370$ sudo scanimage -L
+device `epkowa:interpreter:006:002' is a Epson Perfection V370 Photo flatbed scanner
+
+#+END_EXAMPLE
+
+==================================================
+
+To allow normal uses to open the program iscan,  Add following file, and then reboot
+
+
+#+BEGIN_EXAMPLE
+/etc/udev/rules.d/79-udev-epson.rules
+#+END_EXAMPLE
+
+
+#+BEGIN_EXAMPLE
+
+# chmod device EPSON group
+ATTRS{manufacturer}=="EPSON", DRIVERS=="usb", SUBSYSTEMS=="usb", ATTRS{idVendor}=="04b8", ATTRS{idProduct}=="*", MODE="0777"
+
+#+END_EXAMPLE

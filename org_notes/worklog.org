@@ -1,0 +1,504 @@
+#+TITLE:    worklog - where the magic begins
+#+INCLUDE: "common.inc"
+
+* SYNOPSIS
+
+This is where I brainstorm ideas to publish later ...
+
+* TODO
+
+Start with a fresh notes folder, store it on github,  gradually curate and add rest of notes.
+
+merge draft2 into main notes.  Clean and then commit to github account.
+
+Automate redundant publishing notes to S3 hosting, and redundant backup to Dropbox.
+
+use github to commit/store public notes?
+
+In the End, notes redundantly duplicated in github, S3 and dropbox.
+
+
+
+Technology no longer just supports the business—it is the business. Learn to rethink how to design, build, and manage your systems.
+
+
+dd bs=4M if=/path/to/debian-10.0.0-amd64-netinst.iso of=/dev/sdx status=progress oflag=sync
+
+
+Regolith desktop environment.
+https://regolith-linux.org/docs/
+
+
+Run GUI applications and desktops in docker. Focus on security.
+https://github.com/mviereck/x11docker
+https://github.com/mviereck/x11docker/wiki
+
+
+https://dev.to/brickpop/my-dream-come-true-launching-gui-docker-sessions-with-dx11-in-seconds-1a53
+
+
+https://gitlab.com/brickpop/dx11-nim/blob/master/examples/ubuntu-mate/Dockerfile
+
+#+BEGIN_EXAMPLE
+
+-----------------------------------------
+X2Go Clients:
+You have 3 clients. Which client should I use?
+If in doubt, pick the regular X2Go Client (x2goclient). It is the most widely used and tested.
+
+The regular X2Go Client (x2goclient) is optimized for thin client & single-session usage, but can be used on any desktop/laptop computer.
+PyHoca-GUi is optimized for users who want to connect to multiple sessions at once, and already know how to use X2Go. For example, a sysadmin administrating multiple servers.
+PyHoca-CLI is launched via command-line args; similar to vncviewer or rdesktop/xfreerdp. It is also suitable for connecting to multiple sessions at once.
+-------------------------------------------
+Why Am I told to enable X11 forwarding with X2Go? I thought that X2Go uses nx-libs instead of X11 forwarding!
+
+The simple answer is that the OpenSSH server treats the connection differently (in such a way that degrades nx-libs performance) unless X11 forwarding is enabled.
+
+
+==================================================
+
+
+
+What does "X11UseLocalhost no" do?
+
+I found that I can't ssh (with X11 port forwarding) from my home
+FC4/linux box to a bsd machine, run xclients on the bsd machine, and
+have them X display back to my home machine without specifying the
+"X11UseLocalhost no" option in the /etc/ssh/sshd_config file.
+
+I don't understand what the manpage says about this option. Can
+someone please explain?
+
+
+When doing X forwarding, sshd listens on a TCP socket for connections from
+X clients.  Normally, it will accept connections addressed to the loopback
+address only (127.0.0.1), restricting it to clients on the local host.
+X11UseLocalhost no means it will accept connections from anywhere.
+
+
+X11Forwarding
+-------------
+
+
+Make sure that:
+
+    You've xauth installed on the server (see: xauth info/xauth list).
+
+    On the server your /etc/ssh/sshd_config file have these lines:
+
+    X11Forwarding yes
+    X11DisplayOffset 10
+    X11UseLocalhost no
+
+    On the client side your ~/.ssh/config file have these lines:
+
+    Host *
+      ForwardAgent yes
+      ForwardX11 yes
+
+    On the client side, you've X server installed (e.g. macOS: XQuartz; Windows: Xming).
+
+Then to do X11 forwarding using SSH, you need to add -X to your ssh command, e.g.
+
+ssh -v -X user@host
+
+then verify that your DISPLAY is not empty by:
+
+echo $DISPLAY
+
+If it is, then having verbose parameter for ssh (-v), check for any warnings, e.g.
+
+debug1: No xauth program.
+Warning: untrusted X11 forwarding setup failed: xauth key data not generated
+
+In case you've got untrusted X11 as shown above, then try -Y flag instead (if you trust the host):
+
+ssh -v -Y user@host
+
+See: What does “Warning: untrusted X11 forwarding setup failed: xauth key data not generated” mean when ssh'ing with -X?
+
+In case you've warning: No xauth data, you may try to generate a new .Xauthority file, e.g.
+
+xauth generate :0 . trusted
+xauth list
+
+See: Create/rebuild a new .Xauthority file
+
+If you've got a different warnings than above, follow the further clues.
+
+
+#+END_EXAMPLE
+
+
+==================================================
+
+http://drinkmilk.github.com/directvnc/
+
+gnome-remote-desktop - Remote desktop daemon for GNOME using PipeWire
+python3-pyvirtualdisplay - python wrapper for Xvfb, Xephyr and Xvnc
+vino - VNC server for GNOME
+
+
+==> Workflow:  data repositories on   google-drive  and  Amazon S3    Git?
+
+
+c_workspace  -> local git repository  ->  git repository backup on S3 (and gdrive? )
+
+
+rclone lsd sebapwbgl:/
+
+
+Investigate Amazon Glacier
+
+Murder in the cloud
+https://www.infoworld.com/article/2608076/murder-in-the-amazon-cloud.html
+
+==================================================
+
+AWS Command Line Interface
+https://aws.amazon.com/cli/?nc1=h_ls
+
+Installing AWS cli version 2
+https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+
+#+BEGIN_SRC bash
+curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+aws2 glacier help
+#+END_SRC
+
+What Is Amazon S3 Glacier?
+https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html
+
+Getting Started with Amazon S3 Glacier
+https://docs.aws.amazon.com/amazonglacier/latest/dev/amazon-glacier-getting-started.html
+
+
+https://docs.aws.amazon.com/cli/latest/reference/glacier/index.html
+
+
+==================================================
+
+Lightweight Linux distros for old notebooks
+
+
+https://fossbytes.com/best-lightweight-linux-distros/
+
+https://www.lxle.net/
+https://sourceforge.net/projects/lxle/files/Final/OS/18.04.3-64/lxle-18043-64.iso/download
+http://wiki.lxle.net/doku.php
+
+
+http://puppylinux.com/
+http://distro.ibiblio.org/puppylinux/puppy-bionic/bionicpup64/bionicpup64-8.0-uefi.iso
+
+https://www.linuxliteos.com/
+
+https://www.elivecd.org/download/stable/
+
+
+https://peppermintos.com/
+
+http://tinycorelinux.net     16Mb
+http://www.tinycorelinux.net/10.x/x86_64/release/
+
+
+https://linoxide.com/distros/lightweight-linux-distros-for-old-laptop/
+https://itsfoss.com/cloud-focused-linux-distros/
+https://itsfoss.com/lightweight-linux-beginners/
+
+https://www.linuxliteos.com/
+
+
+
+==================================================
+
+Desktop: Enlightenment 23 -   https://www.enlightenment.org/news/e23_release
+
+
+https://www.enlightenment.org/news/e23_release
+
+Install Enlightenment on Ubuntu
+https://www.omgubuntu.co.uk/2019/08/enlightenment-23-desktop-release
+
+
+https://www.elivecd.org/download/stable/
+
+
+
+==================================================
+
+
+
+
+* automated testing wordpress plugins phpunit
+
+https://www.smashingmagazine.com/2017/12/automated-testing-wordpress-plugins-phpunit/
+
+https://make.wordpress.org/cli/handbook/plugin-unit-tests/
+
+
+https://phpunit.de/getting-started/phpunit-8.html
+
+## composer global require phpunit/phpunit:5.*
+
+php composer.phar require --dev phpunit/phpunit ^8
+
+./vendor/bin/phpunit --version
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+
+
+./vendor/bin/phpunit --bootstrap src/Email.php  tests/
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+...                                                                 3 / 3 (100%)
+Time: 44 ms, Memory: 4.00 MB
+OK (3 tests, 3 assertions)
+
+
+./vendor/bin/phpunit --bootstrap src/wpbootstrap.php  wptests/
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+
+F                                                                   1 / 1 (100%)
+
+Time: 663 ms, Memory: 68.25 MB
+
+There was 1 failure:
+
+1) WpSimpleTest::testCanRunQuery
+Failed asserting that 42 matches expected 5.
+
+/home/vhosts/www.example.com/wptests/WpSimpleTest.php:33
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+
+
+
+SET UP PLUGIN UNIT TEST
+
+Change your terminal’s directory to the root of your WordPress installation, and run the command below to generate the plugin test files.
+
+wp scaffold plugin-tests  wp-your-plugin-name-here
+
+
+* neomutt and Gmail
+
+https://blog.heila.la/command-line-email-with-neomutt-and-gmail/
+
+* vmail  (gmail from command line)
+
+http://danielchoi.com/software/vmail.html
+
+* rclone
+
+https://www.ostechnix.com/how-to-mount-google-drive-locally-as-virtual-file-system-in-linux/
+
+rclone - rsync for commercial cloud storage
+rclone-browser - Simple cross platform GUI for rclone
+
+
+
+
+https://github.com/rclone/rclone
+
+rclone and google drive
+https://rclone.org/drive/
+
+
+* http://odeke-em.github.io/drive/
+
+drive
+A tiny command line client for Google Drive
+
+https://github.com/odeke-em/drive
+
+** install pip on ubuntu 18
+
+https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/
+
+sudo apt install python3-pip
+
+ pip3 --version
+
+pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)
+
+
+** check  https://pypi.org/project/drive-cli/
+
+
+Google Drive has become a vital part of our day to day life. As much as non-programmers use it, so do programmers in several situations, where we need not use git/github.
+
+Drive-CLI is a command-line utility for google drive which helps you access, sync, download, upload, etc. directly to your drive without leaving the command-line. The best part being the commands are similar to git CLI so that you can easily remember them
+
+
+** run elisp from CLI without opening emacs
+
+** install auto-backups to S3 for snarvaez.poweredbygnulinux.com
+
+** install git on org_notes folder to track changes on txt files
+
+** instead of using build.el,  experiment exporting org directly  to html  C-c C-e h h
+
+https://orgmode.org/manual/CSS-support.html
+
+#+BEGIN_EXAMPLE
+   #+OPTIONS: html-style:nil
+   #+HTML_HEAD:  <link rel='stylesheet' type='text/css' href='style.css' />
+   #+HTML_HEAD_EXTRA: <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+#+END_EXAMPLE
+
+
+** create a shortcut for C-c C-e h h
+
+#+BEGIN_SRC elisp
+
+;; eval this to export to html (same as C-c C-e h h )
+(org-export-dispatch "hh")
+
+;; define a function and key binding C-c h  to export to html when inside an org buffer
+(defun sen-quick-org-mode-export()
+  "quick org-mode html export"
+  (interactive)
+  (org-export-dispatch "hh")
+)
+(define-key org-mode-map (kbd "C-c h") 'sen-quick-org-mode-export )
+
+#+END_SRC
+
+
+** Create a template with snippets of most used sections, like source code sections, etc
+
+** migrate the content from jekyll to org mode notes
+
+
+** connecting to a remove emacs via TCP?
+
+TCP Emacs server
+https://www.gnu.org/software/emacs/manual/html_node/emacs/TCP-Emacs-server.html
+
+** install TOR browser in Ubuntu 18 (verified 2019-10-13)
+
+#+BEGIN_SRC bash
+sudo add-apt-repository ppa:micahflee/ppa
+sudo apt install torbrowser-launcher
+#+END_SRC
+
+
+* org
+
+HTML export commands
+
+C-c C-e h h     (org-html-export-to-html)
+
+
+[[info:org#Activation]]
+
+(info "org")
+
+   The four Org commands ‘org-store-link’, ‘org-capture’, ‘org-agenda’,
+and ‘org-switchb’ should be accessible through global keys (i.e.,
+anywhere in Emacs, not just in Org buffers).  Here are suggested
+bindings for these keys, please modify the keys to your own liking.
+     (global-set-key "\C-cl" 'org-store-link)
+     (global-set-key "\C-ca" 'org-agenda)
+     (global-set-key "\C-cc" 'org-capture)
+     (global-set-key "\C-cb" 'org-switchb)
+
+
+;; available key
+     (global-set-key "\C-cn" 'org-store-link)
+     (global-set-key "\C-cc" 'org-capture)
+
+
+* asciinema
+
+https://asciinema.org/docs/how-it-works
+
+Record and share your terminal sessions, the right way.
+Forget screen recording apps and blurry video. Enjoy a lightweight, purely text-based approach to terminal recording.
+
+* external services:
+
+There are numerous services, both free and paid, that offer the ability
+to add dynamic aspects into static pages (it’s important to note
+that these services are not specifically intended for use only on static
+sites). Some popular options include:
+
+- Disqus, Livefyre, or Facebook for comments
+- Wufoo or Google for forms
+- Google, Swiftype, or AddSearch for search
+- Discourse for forums
+
+* remember: when building C samples,  create separate build directory
+
+mkdir build ; cd build ; ../configure
+
+# before publishing, to remove compiled files
+make distclean
+
+
+* TODO integrate worklog inside =public_html= ?
+
+
+* ASCII Art tools
+
+[[file:ascii-art.org][ASCII Art]]
+
+* How to convert  tex to pdf ?
+
+
+At the command line, first install the texlive package if it isn't already installed:
+
+#+BEGIN_EXAMPLE
+sudo apt-get install texlive
+#+END_EXAMPLE
+
+Then use the pdflatex utility to convert the file like this:
+
+#+BEGIN_EXAMPLE
+pdftex /path/to/myfile.tex
+#+END_EXAMPLE
+
+
+The path /path/to/myfile.tex is, of course, an example path. You would put the path to your own file on your system.
+
+Notice that although the utility is called pdflatex you execute it with the command pdftex (without the la).
+
+There are several settings that you can read about in the help for pdflatex:
+
+#+BEGIN_EXAMPLE
+pdflatex --help
+#+END_EXAMPLE
+
+The setting I use the most is the one to generate the pdf in a different directory:
+
+#+BEGIN_EXAMPLE
+pdflatex /path/to/myfile.tex --output-directory=../otherdir
+#+END_EXAMPLE
+
+
+The pdflatex utility is also interactive, so that if you forget to supply necessary information it will prompt you to enter it before converting the file.
+
+
+** what worked for me:
+
+pdflatex  worklog.tex
+
+
+* check
+
+ack-grep
+
+http://beyondgrep.com/more-tools/
+
+ebook-speaker - eBook reader that reads aloud in a synthetic voice
+
+w3-recs -  recommendations produced by W3C    - 196Mb
+
+(info "org")
+
+actionaz - emulates interaction with computer (mouse clicks, keyboard, etc)
+
+#+INCLUDE: "disqus_comments.inc"

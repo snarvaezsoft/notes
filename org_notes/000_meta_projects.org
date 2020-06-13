@@ -1,6 +1,8 @@
 #+TITLE:    META PROJECTS WORKLOG
 #+INCLUDE: "common.inc"
 
+Document this:
+https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension
 
 sync c_workspace on all computers
 

@@ -1,0 +1,19 @@
+#+TITLE:    X2Go
+#+INCLUDE: "common.inc"
+
+* X2Go Overview
+
+X2Go enables you to access a graphical desktop of a computer over a low bandwidth (or high bandwidth) connection.
+
+https://wiki.x2go.org/doku.php/doc:newtox2go
+
+
+* X2Go Desktop Environment Compatibility
+
+https://wiki.x2go.org/doku.php/doc:de-compat
+
+Always Compatible and no Workarounds Required
+
+- LXDE (not LXQt)
+- XFCE
+- MATE

@@ -1,0 +1,47 @@
+#+TITLE:    phpunit
+#+INCLUDE: "common.inc"
+
+
+https://phpunit.de/getting-started/phpunit-8.html
+
+
+php composer.phar require --dev phpunit/phpunit ^8
+
+./vendor/bin/phpunit --version
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+
+
+./vendor/bin/phpunit --bootstrap src/Email.php  tests/
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+...                                                                 3 / 3 (100%)
+Time: 44 ms, Memory: 4.00 MB
+OK (3 tests, 3 assertions)
+
+
+./vendor/bin/phpunit --bootstrap src/wpbootstrap.php  wptests/
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+
+F                                                                   1 / 1 (100%)
+
+Time: 663 ms, Memory: 68.25 MB
+
+There was 1 failure:
+
+1) WpSimpleTest::testCanRunQuery
+Failed asserting that 42 matches expected 5.
+
+/home/vhosts/www.example.com/wptests/WpSimpleTest.php:33
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+
+
+
+
+
+
+SET UP PLUGIN UNIT TEST
+
+Change your terminal’s directory to the root of your WordPress installation, and run the command below to generate the plugin test files.
+
+wp scaffold plugin-tests  wp-your-plugin-name-here

@@ -1,0 +1,120 @@
+#+TITLE:    HOW TO GET FREE SSL CERTIFICATES
+#+INCLUDE:  "common.inc"
+
+
+HOW TO GET FREE SSL CERTIFICATES
+
+
+https://www.digitalocean.com/community/tutorials/how-to-use-certbot-standalone-mode-to-retrieve-let-s-encrypt-ssl-certificates-on-ubuntu-1804
+
+
+https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
+
+
+https://certbot.eff.org/docs/using.html#webroot
+
+
+for Nginx
+https://certbot.eff.org/docs/using.html?highlight=nginx#nginx
+
+==================================================
+
+* How To Use Certbot to Retrieve Let's Encrypt SSL Certificates on Ubuntu 18.04
+
+
+** Introduction
+
+Let’s Encrypt is a service offering free SSL certificates through an automated API. The most popular Let’s Encrypt client is EFF’s Certbot.
+
+Certbot offers a variety of ways to validate your domain, fetch certificates, and automatically configure Apache and Nginx. In this tutorial, we’ll discuss Certbot’s standalone mode and how to use it to secure other types of services, such as a mail server or a message broker like RabbitMQ.
+
+We won’t discuss the details of SSL configuration, but when you are done you will have a valid certificate that is automatically renewed. Additionally, you will be able to automate reloading your service to pick up the renewed certificate.
+
+** Prerequisites
+
+Before starting this tutorial, you will need:
+
+An Ubuntu 18.04 server with a non-root, sudo-enabled user and basic firewall set up, as detailed in this Ubuntu 18.04 server setup tutorial.
+A domain name pointed at your server, which you can accomplish by following “How to Set Up a Host Name with DigitalOcean.” This tutorial will use example.com throughout.
+Port 80 or 443 must be unused on your server. If the service you’re trying to secure is on a machine with a web server that occupies both of those ports, you’ll need to use a different mode such as Certbot’s webroot mode.
+
+** Step 1 — Installing Certbot
+Ubuntu includes the Certbot client in their default repository, but it’s a bit out of date. Instead, we’ll install it from Certbot’s official Ubuntu PPA, or Personal Package Archive. These are alternative repositories that package more recent or more obscure software. First, add the repository:
+
+sudo add-apt-repository ppa:certbot/certbot
+You’ll need to press ENTER to accept. Afterwards, update the package list to pick up the new repository’s package information:
+
+sudo apt update
+And finally, install the certbot package:
+
+sudo apt install certbot
+Now that we have Certbot installed, let’s run it to get our certificate.
+
+** Step 2 — Running Certbot
+
+Certbot needs to answer a cryptographic challenge issued by the Let’s Encrypt API in order to prove we control our domain. It uses ports 80 (HTTP) or 443 (HTTPS) to accomplish this. Open up the appropriate port in your firewall:
+
+sudo ufw allow 80
+
+Substitute 443 above if that’s the port you’re using. ufw will output confirmation that your rule was added:
+
+Output
+Rule added
+Rule added (v6)
+
+
+#+BEGIN_EXAMPLE
+
+sudo certbot certonly  --webroot  --webroot-path  /home/vhosts/dev.example.org/public_html/    -d  dev.example.org
+
+
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator webroot, Installer None
+Enter email address (used for urgent renewal and security notices) (Enter 'c' to
+cancel):
+
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+
+
+
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator webroot, Installer None
+Obtaining a new certificate
+Performing the following challenges:
+http-01 challenge for dev.example.org
+Using the webroot path /home/vhosts/dev.example.org/public_html for all unmatched domains.
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/dev.example.org/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/dev.example.org/privkey.pem
+   Your cert will expire on 2020-01-27. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+
+#+END_EXAMPLE
+
+
+
+* Certbot for nginx on Ubuntu 20.04
+
+
+install packages:
+
+- pythonn3-certbot-nginx
+- certbot
+
+run:
+
+certbot --nginx

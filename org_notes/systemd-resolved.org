@@ -1,0 +1,82 @@
+#+TITLE:    How to Change /etc/resolv.conf on Ubuntu 18 with systemd-resolved
+#+INCLUDE:  "common.inc"
+
+How to Change /etc/resolv.conf on Ubuntu 18 with systemd-resolved
+
+Issue: manually changing /etc/resolv.conf does not work long term because there is a daemon systemd-resolved that is automatically updating that file and overriding our changes.
+
+Solution:  update the configuration of systemd-resolved instead
+
+#+BEGIN_EXAMPLE
+man systemd-resolved
+
+The DNS servers contacted are determined from the global settings in /etc/systemd/resolved.conf, the per-link static settings in
+       /etc/systemd/network/*.network files, the per-link dynamic settings received over DHCP and any DNS server information made available by
+       other system services. See resolved.conf(5) and systemd.network(5) for details about systemd's own configuration files for DNS servers. To
+       improve compatibility, /etc/resolv.conf is read in order to discover configured system DNS servers, but only if it is not a symlink to
+       /run/systemd/resolve/stub-resolv.conf or /run/systemd/resolve/resolv.conf (see below).
+
+#+END_EXAMPLE
+
+In this example we will replace the default to perform DNS queries via google DNS servers 8.8.8.8  and 8.8.4.4
+
+add or update the DNS line in the file   /etc/systemd/resolved.conf,  the DNS servers are simply separated with a space:
+
+#+BEGIN_EXAMPLE
+DNS=8.8.8.8 8.8.4.4
+#+END_EXAMPLE
+
+This is how a diff of the original config and the modified file looks like:
+
+#+BEGIN_SRC bash
+diff --git a/systemd/resolved.conf b/systemd/resolved.conf
+index 3758089..649a7c4 100644
+--- a/systemd/resolved.conf
++++ b/systemd/resolved.conf
+@@ -12,7 +12,7 @@
+ # See resolved.conf(5) for details
+
+ [Resolve]
+-#DNS=
++DNS=8.8.8.8 8.8.4.4
+ #FallbackDNS=
+ #Domains=
+ #LLMNR=no
+
+#+END_SRC
+
+Restart resolved
+
+#+BEGIN_SRC bash
+sudo service systemd-resolved restart
+
+#+END_SRC
+
+Notice that this will not change the content of the file /etc/resolv.conf
+but it will change the DNS servers used by the daemon listening on 127.0.0.53
+
+
+#+BEGIN_EXAMPLE
+cat /etc/resolv.conf
+
+# This file is managed by man:systemd-resolved(8). Do not edit.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "systemd-resolve --status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs must not access this file directly, but only through the
+# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+# replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0
+search openstacklocal
+
+#+END_EXAMPLE
