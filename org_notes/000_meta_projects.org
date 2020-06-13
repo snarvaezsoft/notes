@@ -1,4 +1,6 @@
-  META PROJECTS    -*- mode: org; -*-
+#+TITLE:    META PROJECTS WORKLOG
+#+INCLUDE: "common.inc"
+
 
 sync c_workspace on all computers
 
