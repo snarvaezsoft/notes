@@ -1,0 +1,74 @@
+#+TITLE:    VNC inside docker container
+#+INCLUDE: "common.inc"
+
+
+* How to run VNC Server inside a docker container
+
+Tested on
+- Docker Host Ubuntu 18.04
+- Docker container Ubuntu 20.04
+- VNC Desktop: Ubuntu Mate 20.04
+
+* Launching the docker container
+
+It seems there is no need for extra permissions or to read special X files
+
+
+#+BEGIN_EXAMPLE
+
+(D3)seba@desktop3:~/docker_scripts$ cat run_u20d.sh
+
+# Enable User namespaces in debian kernel
+# echo 1 > /proc/sys/kernel/unprivileged_userns_clone
+
+docker run -it \
+       --user root \
+       -p 5930:5930   -p  2230:22  \
+       -v /home/seba/u16_docker_volumes/volumes/u20d/_data:/home  \
+       --name u20d  \
+       -h u20d.local  \
+       ubuntu:20.04    /bin/bash
+
+#+END_EXAMPLE
+
+
+* Installed packages on docker container
+
+- openssh server
+- tightvncserver
+- Ubuntu Mate desktop 20.04
+
+* Launcing VNC Server
+
+#+BEGIN_EXAMPLE
+
+vncpasswd
+
+
+vncserver  :30
+xauth:  file /home/seba/.Xauthority does not exist
+
+New 'X' desktop is u20d.local:30
+
+Creating default startup script /home/seba/.vnc/xstartup
+Starting applications specified in /home/seba/.vnc/xstartup
+Log file is /home/seba/.vnc/u20d.local:30.log
+
+
+#+END_EXAMPLE
+
+* SSH tunnel from client machine to remote container VNC Port
+
+#+BEGIN_SRC bash
+
+ssh -L 5930:127.0.0.1:5930 -N -f -l seba  remotehostname
+
+#+END_SRC
+
+* Connect from client
+
+- client:  Vinagre running on Debian 10
+
+Connect to:   localhost:5930
+
+it will ask for the VNC password.
