@@ -1,0 +1,595 @@
+  META PROJECTS    -*- mode: org; -*-
+
+sync c_workspace on all computers
+
+the concept is to be able to download those folders to a new computer
+and recreate the complete environment again with minimal effort
+
+rclone copy --dry-run --progress  ~/c_workspace_host  sebapwbgl:/c_workspace_host
+
+nice -n 19  ionice -c2 -n7 rsync --progress -av  seba@vostro1510.local:/media/seba/bk2/seba/    seba/
+
+
+file:~/c_workspace_host/       meta files and notes, opened in the host
+file:~/c_workspace_host/notes/
+file:~/c_workspace_host/books_notes
+
+file:~/c_workspace            mounted inside the container.
+file:~/c_workspace_videos     want to backup those videos to g-drive
+file:~/c_workspace_books      only books related with projects
+     file:~/books/            move as needed from here into c_workspace_books
+file:~/old_c_workspace        move here what is obsolete, not relevant
+
+#rsync  -raz --progress  --dry-run vostro1510.local:/media/seba/bk2/seba/tutorial_videos   ~/d4/data_recovery/seba/
+
+rsync -raz --progress  192.168.0.28:/media/seba/bk2/seba   /home/seba/d4/data_recovery/
+
+
+ssh d10r77.local
+docker start -ai d10tr
+root@d10tr:/# service ssh start
+[ ok ] Starting OpenBSD Secure Shell server: sshd.
+ssh -p 2217 -XY  d10r77.local
+seba@d10tr:~$ echo $DISPLAY
+d10tr.local:10.0
+
+
+==================================================
+
+file:~/c_workspace_host/notes/c.txt
+
+Python Fundamentals - Deitel   45hs
+https://learning.oreilly.com/videos/python-fundamentals/9780135917411
+
+
+C/C++ Pointers and Applications
+https://subscription.packtpub.com/video/programming/9781800564145
+
+C and C++ BOOKS  (several 2020)
+https://subscription.packtpub.com/search?language=c~c%2B%2B
+
+
+
+Practical C programming  - Feb 2020
+https://subscription.packtpub.com/book/programming/9781838641108
+
+Expert C++ April 2020
+https://subscription.packtpub.com/book/programming/9781838552657
+
+
+JavaScript: The Definitive Guide, 7th Edition  June 2020
+https://learning.oreilly.com/library/view/javascript-the-definitive/9781491952016/
+
+Working Remotely Can Work for Everyone By Scott Berkun
+https://learning.oreilly.com/playlists/efe69f05-4fc4-452e-97e1-06e3fb4f7b1e/
+
+
+Modern C ( Dec 2019 )
+https://learning.oreilly.com/library/view/modern-c/9781617295812/kindle_split_005.html
+
+Autotools, 2nd Edition (Nov 2019)
+https://learning.oreilly.com/library/view/autotools-2nd-edition/9781098122577/
+file:~/c_workspace_host/books_notes/autotools_2nd_ed_2019.txt
+
+
+The GNU Make Book (Apr 2015)
+https://learning.oreilly.com/library/view/the-gnu-make/9781457189883/
+
+Extreme C book 2019
+https://subscription.packtpub.com/book/programming/9781789343625/1
+
+The Resurgence of C Programming  (Dec 2016)
+https://learning.oreilly.com/library/view/the-resurgence-of/9781492048787/
+
+
+Beginning x64 Assembly Programming: From Novice to AVX Professional (Oct 2019)
+Covers Linux Ubuntu 18 but with NASM assembler
+https://learning.oreilly.com/library/view/beginning-x64-assembly/9781484250761/
+
+
+Assembly Programming for all platforms (Video) (Jul 2019)
+https://learning.oreilly.com/videos/assembly-programming-for/9781838987541
+
+
+C Programming Cookbook
+https://learning.oreilly.com/library/view/c-programming-cookbook/9781789617450/
+
+Modern C Quick Syntax Reference: A Pocket Guide to the Language, APIs, and Library (Dec 2018)
+https://learning.oreilly.com/library/view/modern-c-quick/9781484242889/
+
+Practical C (Nov 2016)
+https://learning.oreilly.com/library/view/practical-c/9781484217696/
+
+C in a Nutshell, 2nd Edition (Dec 2015)
+https://learning.oreilly.com/library/view/c-in-a/9781491924174/
+
+Intermediate C Programming  (June 2015)
+https://learning.oreilly.com/library/view/intermediate-c-programming/9781498711647/
+use standard Linux-based tools, such as ddd and valgrin, gprof, gcov
+
+TCP/IP Sockets in C, 2nd Edition (March 2019)
+https://learning.oreilly.com/library/view/tcpip-sockets-in/9780080923215/
+
+Hands-On Network Programming with C (May 2019)
+https://learning.oreilly.com/library/view/hands-on-network-programming/9781789349863/
+
+21st Century C, 2nd Edition (Oct 2014)
+https://learning.oreilly.com/library/view/21st-century-c/9781491904428/
+
+
+C Recipes: A Problem-Solution Approach (Jul 2017)
+https://learning.oreilly.com/library/view/c-recipes-a/9781484229675/
+
+Learn to Program with C (Dec 2015)
+https://learning.oreilly.com/library/view/learn-to-program/9781484213711/
+
+Advanced C and C++ Compiling (Apr 2014)
+https://learning.oreilly.com/library/view/advanced-c-and/9781430266679/
+shared vs static libraries
+
+
+C for Programmers with an Introduction to C11 (April 2013)
+https://learning.oreilly.com/library/view/c-for-programmers/9780133462081/
+
+Advanced Topics in C: Core Concepts in Data Structures  (Oct 2013)
+https://learning.oreilly.com/library/view/advanced-topics-in/9781430264002/
+
+Pointers in C: A Hands on Approach (Dec 2013)
+https://learning.oreilly.com/library/view/pointers-in-c/9781430259114/
+
+Understanding and Using C Pointers (May 2013)
+https://learning.oreilly.com/library/view/understanding-and-using/9781449344535/
+
+Numerical C: Applied Computational Programming with Case Studies (Sep 2019)
+https://learning.oreilly.com/library/view/numerical-c-applied/9781484250648/
+
+C Programming for the PIC Microcontroller: Demystify Coding with Embedded Programming (Dec 2019)
+https://learning.oreilly.com/library/view/c-programming-for/9781484255254/
+
+Data Structures using C, 2nd Edition (June 2013)
+https://learning.oreilly.com/library/view/data-structures-using/9789332524248/
+
+Programming in C, 3/e, 3rd Edition (Arp 2015)
+https://learning.oreilly.com/library/view/programming-in-c/9789332558328/
+
+Hacking: The Art of Exploitation, 2nd Edition (Jan 2008) Example Programs in C
+https://learning.oreilly.com/library/view/hacking-the-art/9781593271442/
+
+
+
+Sudoku Programming with C
+https://learning.oreilly.com/library/view/sudoku-programming-with/9781484209950/
+
+
+
+
+
+https://www.cyberciti.biz/faq/how-to-fix-x11-forwarding-request-failed-on-channel-0/
+/etc/ssh/sshd_config
+X11Forwarding yes
+X11UseLocalhost no
+
+https://sourceware.org/gdb/documentation/
+
+
+The art of unix programming
+http://www.catb.org/~esr/writings/taoup/html/preface.html
+
+Eric S. Raymond's home page
+http://www.catb.org/~esr/
+
+
+==================================================
+
+Meta txt HOST File
+  resides insider the folder c_workspace_host and is opened in the host
+  contains links to
+    docker files and scripts to launch the containers for development
+    interesting project folders
+    related books
+    related videos
+    contains a separate section for each Project
+      Projects can be books, practicing a topic, etc
+      each project goes into its own folder,  grouped inside the related language, ie:
+         c/using_pointers_in_c_book
+
+
+Meta txt container file
+   resides inside the folder c_workspace, it is intended to be opened inside the container
+   contains links to
+      local documentation installed inside the container
+         info files
+         html books
+         txt books
+         source code examples
+
+
+docker container (engine)
+  docker file to build container (vs saving an image)
+  mount folder /home/c_workspace  inside container
+  ssh -XY  containerIP
+  ~/root/usr/src  to donwload sample code (does not need backup)
+
+on host:
+  X server
+  folder c_workspace mounted inside docker container
+  folder c_workspace_books   containing related books
+  pdf books opened in the host
+
+  backup:
+    folders  c_workspce, c_workspace_books
+    meta txt index file,
+
+
+ideas: git remote server and then auto backup git repo to gdrive and S3 ?
+git repo to contain only txt or source files, not books, images or DBs
+
+LIST EVERY BOOK AND RELATEDTRAINING FOLDER / Container HERE
+
+document process to restore ~/books folder, so all links will work, ie:
+
+(pdf-open-file "/home/seba/c_workspace_books/c/The.ANSI.C.Programming.Language.2nd.ed.by.K_R.pdf")
+
+(pdf-open-file "/home/seba/c_workspace_books/c/Oreilly.Understanding.and.Using.C.Pointers.Apr.2013.pdf")
+
+(pdf-open-file "/home/seba/books/linux.programming.gnu.tools/Linux_System_Programming.pdf")
+
+(pdf-open-file "/home/seba/c_workspace_books/c/C_in_a_Nutshell-2015-.pdf")
+
+(pdf-open-file "/home/seba/c_workspace_books/c/OReilly.21st.Century.C.C.Tips.from.the.New.School.2nd.Edition.1491903899.pdf")
+file:books_notes/oreilly_21st_century_c_2015_2nd_ed.txt
+
+(pdf-open-file "/home/seba/c_workspace_books/c/C_Quick_Syntax_Reference.pdf")
+
+
+
+==================================================
+
+* Host config
+
+scripts to try to replicate current host desktop config
+
+# xdg-open  pdf file with atril/evince
+xdg-mime default atril.desktop application/pdf
+
+xdg-mime query default application/pdf
+gimp.desktop
+
+/usr/share/applications/atril.desktop
+
+xdg-mime default evince.desktop application/pdf
+
+xdg-mime default atril.desktop application/pdf
+
+
+seba@i7d10:/var/lib$ ls /usr/share/applications/
+atril.desktop
+calibre-ebook-viewer.desktop
+eog.desktop
+eom.desktop
+feh.desktop
+google-chrome.desktop
+marco.desktop
+
+
+
+./gtd.txt 2837:$ xdg-mime default  caja.desktop   inode/directory
+./gtd.txt 2841:$ xdg-mime default  xfe.desktop   inode/directory
+./gtd.txt 2847:$ xdg-mime query default application/pdf
+./gtd.txt 2849:$ xdg-mime default evince.desktop application/pdf
+./gtd.txt 2851:$ xdg-mime query default application/pdf
+./gtd.txt 2855:$ xdg-open test.pdf
+./gtd.txt 2856:/usr/bin/xdg-open: 491: /usr/bin/xdg-open: gnome-open: not found
+./gtd.txt 2861:xdg-mime default atril.desktop application/pdf
+./gtd.txt 2864:xdg-mime query default image/gif
+./gtd.txt 2866:xdg-mime default eom.desktop image/gif
+./gtd.txt 2874:/var/lib/menu-xdg/applications/menu-xdg/X-Debian-Applications-Viewers-evince.desktop
+./gtd.txt 2880:(man "xdg-mime")
+./gtd.txt 2882:xdg-mime query filetype  un.video.mp4
+./gtd.txt 2885:xdg-mime query default video/mp4
+./gtd.txt 2889:xdg-mime query default   inode/directory
+./gtd.txt 2891:xdg-mime default  caja-browser.desktop   inode/directory
+./gtd.txt~ 1805:$ xdg-mime default  caja.desktop   inode/directory
+./gtd.txt~ 1809:$ xdg-mime default  xfe.desktop   inode/directory
+./gtd.txt~ 1815:$ xdg-mime query default application/pdf
+./gtd.txt~ 1817:$ xdg-mime default evince.desktop application/pdf
+./gtd.txt~ 1819:$ xdg-mime query default application/pdf
+./gtd.txt~ 1823:$ xdg-open test.pdf
+./gtd.txt~ 1824:/usr/bin/xdg-open: 491: /usr/bin/xdg-open: gnome-open: not found
+./gtd.txt~ 1829:xdg-mime default atril.desktop application/pdf
+./gtd.txt~ 1832:xdg-mime query default image/gif
+./gtd.txt~ 1834:xdg-mime default eom.desktop image/gif
+./gtd.txt~ 1842:/var/lib/menu-xdg/applications/menu-xdg/X-Debian-Applications-Viewers-evince.desktop
+./gtd.txt~ 1848:(man "xdg-mime")
+./gtd.txt~ 1850:xdg-mime query filetype  un.video.mp4
+./gtd.txt~ 1853:xdg-mime query default video/mp4
+./gtd.txt~ 1857:xdg-mime query default   inode/directory
+./gtd.txt~ 1859:xdg-mime default  caja-browser.desktop   inode/directory
+
+
+* TODO
+
+** rclone / script to download docx and convert to txt
+
+rclone  copy --progress "hcfit2:/Servers/Configurations/CONFIGURATIONS - HQ - IT 2 - MAIN 2020 SERVER WORKLOG.docx" ./
+
+(D3)seba@desktop3:~/test_docx$ ls
+'CONFIGURATIONS - HQ - IT 2 - MAIN 2020 SERVER WORKLOG.docx'  '[Content_Types].xml'   _rels   word
+
+
+I like this command, but often newlines are still useful data to have in the final version. Therefore I used the following command instead: unzip -p document.docx word/document.xml | sed -e 's/<\/w:p>/\n/g; s/<[^>]\{1,\}>//g; s/[^[:print:]\n]\{1,\}//g' Note the additional sed argument, replacing XML representations of newlines with the actual newline character, and I edited the last sed argument to not strip newline characters. This makes the above command far more useful for diff-ing Word documents.
+
+
+# replace &gt; with >   and &amp with &
+
+cat docx2txt.sh
+unzip -p *.docx word/document.xml | sed -e 's/<\/w:p>/\n/g; s/<[^>]\{1,\}>//g; s/[^[:print:]\n]\{1,\}//g'  | sed -e 's/&gt;/>/g; s/&lt;/</g;  s/&amp;/\&/g; s/&quot;/"/g;'
+
+
+
+
+** gdrive / script to download a g-doc as txt
+
+unfortunatelly it does not support shared team drives ??
+
+file:~/notas/gdrive.txt
+file:~/notas/gdrive_worklog.txt
+
+gdrive [global] export [options] <fileId>                      Export a google document
+
+#  export a g-doc to local txt file
+gdrive-linux-x64  export --mime text/plain  1uk8o1LF4E4iBr0OGG9P6dE2kCDmOmK4ywO3cKF3Sfuk
+Exported 'gdrive_worklog.asc' with mime type: 'text/plain'
+
+
+# Pipe content directly to google drive
+$ echo "Hello World" | gdrive upload - hello.txt
+
+# Print file to stdout
+$ gdrive download --stdout 0B3X9GlR6EmbnaXVrOUpIcWlUS0E
+Hello World
+
+# Import csv as google spreadsheet
+$ gdrive import foo.csv
+Imported 1mTl3DjIvap4tpTX_oMkDcbDT8ShtiGJRlozTfkXpeko with mime type: 'application/vnd.google-apps.spreadsheet'
+
+
+* Books
+
+
+VIDEO - Python A-Z - Learn Python Programming By Building 5 Projects
+https://subscription.packtpub.com/video/programming/9781839212956
+file:~/c_workspace_host/books_notes/video_python_a-z_Learn_Python_Programming_By_Building_5_Projects.txt
+
+
+Introducing Python, 2nd ed
+https://learning.oreilly.com/library/view/introducing-python-2nd/9781492051374/preface01.html
+file:~/c_workspace_host/books_notes/introducing_python_2nd_ed.txt
+
+
+Achieving DevOps: A Novel About Delivering the Best of Agile, DevOps, and Microservices
+https://learning.oreilly.com/library/view/achieving-devops-a/9781484243886/
+file:~/c_workspace_host/books_notes/achieving_devops.txt
+
+The DevOps Handbook
+https://learning.oreilly.com/library/view/the-devops-handbook/9781457191381/DOHB-ch_02.xhtml
+
+Autotools, 2nd Edition (Nov 2019)
+https://learning.oreilly.com/library/view/autotools-2nd-edition/9781098122577/
+
+The GNU Make Book (Apr 2015)
+https://learning.oreilly.com/library/view/the-gnu-make/9781457189883/
+
+The Linux Command Line, 2nd Edition ( Feb 2019 )
+https://learning.oreilly.com/library/view/the-linux-command/9781492071235/
+
+Linux Basics for Hackers  (just some chapters are interesting) (Dec 2018)
+https://learning.oreilly.com/library/view/linux-basics-for/9781492069485/
+
+
+How Linux Works, 2nd Edition (Nov 2014)
+https://learning.oreilly.com/library/view/how-linux-works/9781457185519/
+
+Python Crash Course, 2nd Edition (May 2019)
+https://learning.oreilly.com/library/view/python-crash-course/9781492071266/
+
+Python for DevOps (Dec 2019)
+https://learning.oreilly.com/library/view/python-for-devops/9781492057680/
+
+Serious Python
+https://learning.oreilly.com/library/view/serious-python/9781492071211/
+
+Hands-On Enterprise Automation on Linux  Jan 2020
+https://subscription.packtpub.com/book/business_and_other/9781789131611
+
+
+Black Hat Python  (Dec 2014)
+https://learning.oreilly.com/library/view/black-hat-python/9781457189807/
+
+
+Automate the Boring Stuff with Python, 2nd Edition  (Nov 2019)
+https://learning.oreilly.com/library/view/automate-the-boring/9781098122584/
+
+Eloquent JavaScript, 3rd Edition (Dec 2018)
+https://learning.oreilly.com/library/view/eloquent-javascript-3rd/9781492071198/
+
+The Linux Programming Interface (Oct 2010)
+https://learning.oreilly.com/library/view/the-linux-programming/9781593272203/
+
+C++ Crash Course (Sept 2019)
+https://learning.oreilly.com/library/view/c-crash-course/9781098122553/
+
+Wicked Cool Shell Scripts, 2nd Edition (Oct 2016)
+https://learning.oreilly.com/library/view/wicked-cool-shell/9781492018322/
+
+
+Learning DevOps (Oct 2019)
+https://learning.oreilly.com/library/view/learning-devops/9781838642730/
+file:books_notes/learning_devops_2019.txt
+Hace mucho enfasis en Azure, cada capitlo tiene un ejemplo con Azure.
+
+
+The Phoenix Project (2013)
+https://learning.oreilly.com/library/view/the-phoenix-project/9781457191350/
+A novel about IT, DevOps, and helping your business win. Readers will not only learn how to improve their own IT organizations, they'll never view IT the same way again.
+
+
+
+Practical SQL (May 2018) covers postgresql
+https://learning.oreilly.com/library/view/practical-sql/9781492067580/
+
+
+The Rust Programming Language (Covers Rust 2018)  (July 2019)
+https://learning.oreilly.com/library/view/the-rust-programming/9781098122539/
+
+TCP/IP Guide
+https://learning.oreilly.com/library/view/tcpip-guide/9781593270476/
+
+Practical Packet Analysis, 3rd Edition (mar 2017)  wireshark
+https://learning.oreilly.com/library/view/practical-packet-analysis/9781492020356/
+
+Penetration Testing (May 2014)
+https://learning.oreilly.com/library/view/penetration-testing/9781457185342/
+
+The Secret Life of Programs (July 2019)
+https://learning.oreilly.com/library/view/the-secret-life/9781098122515/
+
+Land of Lisp (Nov 2010)
+https://learning.oreilly.com/library/view/land-of-lisp/9781593272814/
+
+The Practice of Network Security Monitoring (Jul 2013)
+https://learning.oreilly.com/library/view/the-practice-of/9781457185175/
+
+Mastering Assembly Programming (sep 2017)
+https://learning.oreilly.com/library/view/mastering-assembly-programming/9781787287488/
+
+
+Write Great Code  (Assembly)  Nov 2004
+https://learning.oreilly.com/library/view/write-great-code/1593270038/
+
+Low-Level Programming: C, Assembly, and Program Execution on Intel® 64 Architecture (Jun 2017)
+https://learning.oreilly.com/library/view/low-level-programming-c/9781484224021/
+
+
+
+Beginning x64 Assembly Programming: From Novice to AVX Professional (Oct 2019)
+https://learning.oreilly.com/library/view/beginning-x64-assembly/9781484250761/
+
+Metasploit  (2011)
+https://learning.oreilly.com/library/view/metasploit/9781593272883/
+
+
+The Manga Guide to Linear Algebra
+https://learning.oreilly.com/library/view/the-manga-guide/9781457166730/
+
+
+CMake Cookbook (Dec 2018)
+https://learning.oreilly.com/library/view/cmake-cookbook/9781788470711/
+$ docker run -it devcafe/cmake-cookbook_ubuntu-18.04
+$ git clone https://github.com/dev-cafe/cmake-cookbook.git
+$ cd cmake-cookbook
+$ pipenv install --three
+$ pipenv run python testing/collect_tests.py 'chapter-*/recipe-*'
+
+
+Digital Transformation Game Plan
+https://learning.oreilly.com/library/view/digital-transformation-game/9781492054382/ch01.html
+
+The Principles of Object-Oriented JavaScript (2014)
+https://learning.oreilly.com/library/view/the-principles-of/9781457185304/
+
+
+The Art of Debugging with GDB, DDD, and Eclipse (2008)
+https://learning.oreilly.com/library/view/the-art-of/9781593271749/
+
+
+My Drive > bookshelf > security > masteringlinuxsecurityandhardening_2018.pdf
+
+
+My Drive > bookshelf > security > handsonawspenetrationtestingwithkalilinux_April_2019.pdf
+
+My Drive > bookshelf > command_line > working_with_linux_quick_hacks_for_the_command_line_2017.pdf
+
+My Drive > bookshelf > command_line > mastering_ubuntu_server_1804_2018.pdf
+
+My Drive > bookshelf > command_line > git_version_control_cookbook_july_2018.pdf
+
+My Drive > bookshelf > command_line > command_line_fundamentals_nov_2018.pdf
+
+My Drive > bookshelf > devops > devops with kubernetes - 2nd - 2019.pdf
+
+My Drive > bookshelf > devops > effective devops with AWS - 2nd - Sep 2018.pdf
+
+My Drive > bookshelf > devops > introduction to devops with kubernetes - May 2019.pdf
+
+My Drive > bookshelf > devops > mastering ansible - 3rd ed - march 2019.pdf
+
+My Drive > bookshelf > devops > practical devops 2nd - May 2018.pdf
+
+My Drive > bookshelf > devops > practical network automation 2nd - Dec 2018.pdf
+?????????
+My Drive > bookshelf > devops > mastering docker enterprise - march 2019.pdf
+
+My Drive > bookshelf > devops > mastering gitlab 12 - Aug 2019.pdf
+
+My Drive > bookshelf > cpp_programming_packt > cpp_fundamentals_March_2019.pdf
+
+My Drive > bookshelf > cpp_programming_packt > hands_on_functional_programming_with_cpp_aug_2019.pdf
+
+My Drive > bookshelf > cpp_programming_packt > qt5 cpp gui programming cookbook - 2nd - march 2019.pdf
+
+My Drive > bookshelf > cpp_programming_packt > hands on design patterns with cpp 2019.pdf
+
+My Drive > bookshelf > cpp_programming_packt > cpp data structures and algorithms 2018.pdf
+
+
+* Modern C ( Dec 2019 )
+
+https://learning.oreilly.com/topics/c/
+
+https://learning.oreilly.com/library/view/modern-c/9781617295812/kindle_split_005.html
+
+book notes
+file:~/c_workspace_host/books_notes/manning_modern_c_dec_2019.txt
+
+Container Project Folder: file:~/c_workspace/c/manning_modern_c_book/
+
+
+
+* GNOME 3 Application Development Beginner's Guide
+
+https://www.packtpub.com/application-development/gnome-3-application-development-beginners-guide
+https://subscription.packtpub.com/book/application_development/9781849519427
+
+https://developer.gnome.org/
+
+Project Folder: file:~/c_workspace/gtk3/
+
+GNOME3
+file:~/c_workspace/gtk3/gtk3.txt
+
+apt-get source  libgtk-3-0
+
+INSTRUCTIONS TO LAUNCH DOCKER CONTAINER
+FOLDER TO DOCKER FILES to launch container with all required packages
+
+
+* Hands-On Network Programming with C
+
+https://learning.oreilly.com/library/view/hands-on-network-programming/9781789349863/
+
+c_workspace/[ FOLDER ]???
+
+INSTRUCTIONS TO LAUNCH DOCKER CONTAINER
+FOLDER TO DOCKER FILES to launch container with all required packages
+* LINKS
+
+https://learning.oreilly.com/home/
+
+
+https://smalltalkrenaissance.wordpress.com
+https://files.pharo.org/pharo-launcher/linux64
+
+
+
+https://serverfault.com/questions/249792/use-git-for-multiple-server-configuration-files
