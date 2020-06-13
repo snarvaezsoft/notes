@@ -1,0 +1,42 @@
+#+TITLE:    GitHub Notes
+#+INCLUDE: "common.inc"
+
+
+* How to save username and password in GIT?
+
+Make sure you are using the SSH URL for the GitHub repository rather than the HTTPS URL. It will ask for username and password when you are using HTTPS and not SSH.
+
+
+#+BEGIN_SRC
+git config --global user.name myusername
+git config --global user.email myemail
+git config --global github.user myusername
+git config --global github.token mytoken
+
+#+END_SRC
+
+
+Run
+
+#+BEGIN_SRC
+git config --global credential.helper store
+#+END_SRC
+
+
+then
+
+#+BEGIN_SRC
+git pull
+#+END_SRC
+
+provide a username and password and those details will then be remembered later. The credentials are stored in a file on the disk, with the disk permissions of "just user readable/writable" but still in plaintext.
+
+If you want to change the password later
+
+git pull
+
+Will fail, because the password is incorrect, git then removes the offending user+password from the ~/.git-credentials file, so now re-run
+
+git pull
+
+to provide a new password so it works as earlier.
