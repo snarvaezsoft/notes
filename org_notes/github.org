@@ -4,6 +4,8 @@
 
 * How to save username and password in GIT?
 
+** Using SSH URL
+
 Make sure you are using the SSH URL for the GitHub repository rather than the HTTPS URL. It will ask for username and password when you are using HTTPS and not SSH.
 
 
@@ -15,6 +17,7 @@ git config --global github.token mytoken
 
 #+END_SRC
 
+** USING HTTPS URL
 
 Run
 
