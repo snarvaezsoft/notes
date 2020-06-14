@@ -14,15 +14,15 @@ rclone copy --dry-run --progress  ~/c_workspace_host  sebapwbgl:/c_workspace_hos
 nice -n 19  ionice -c2 -n7 rsync --progress -av  seba@vostro1510.local:/media/seba/bk2/seba/    seba/
 
 
-file:~/c_workspace_host/       meta files and notes, opened in the host
-file:~/c_workspace_host/notes/
-file:~/c_workspace_host/books_notes
+~/c_workspace_host/       meta files and notes, opened in the host
+~/c_workspace_host/notes/
+~/c_workspace_host/books_notes
 
-file:~/c_workspace            mounted inside the container.
-file:~/c_workspace_videos     want to backup those videos to g-drive
-file:~/c_workspace_books      only books related with projects
-     file:~/books/            move as needed from here into c_workspace_books
-file:~/old_c_workspace        move here what is obsolete, not relevant
+~/c_workspace            mounted inside the container.
+~/c_workspace_videos     want to backup those videos to g-drive
+~/c_workspace_books      only books related with projects
+     ~/books/            move as needed from here into c_workspace_books
+~/old_c_workspace        move here what is obsolete, not relevant
 
 #rsync  -raz --progress  --dry-run vostro1510.local:/media/seba/bk2/seba/tutorial_videos   ~/d4/data_recovery/seba/
 
@@ -40,7 +40,7 @@ d10tr.local:10.0
 
 ==================================================
 
-file:~/c_workspace_host/notes/c.txt
+~/c_workspace_host/notes/c.txt
 
 Python Fundamentals - Deitel   45hs
 https://learning.oreilly.com/videos/python-fundamentals/9780135917411
@@ -73,7 +73,7 @@ https://learning.oreilly.com/library/view/modern-c/9781617295812/kindle_split_00
 
 Autotools, 2nd Edition (Nov 2019)
 https://learning.oreilly.com/library/view/autotools-2nd-edition/9781098122577/
-file:~/c_workspace_host/books_notes/autotools_2nd_ed_2019.txt
+~/c_workspace_host/books_notes/autotools_2nd_ed_2019.txt
 
 
 The GNU Make Book (Apr 2015)
@@ -241,7 +241,7 @@ document process to restore ~/books folder, so all links will work, ie:
 (pdf-open-file "/home/seba/c_workspace_books/c/C_in_a_Nutshell-2015-.pdf")
 
 (pdf-open-file "/home/seba/c_workspace_books/c/OReilly.21st.Century.C.C.Tips.from.the.New.School.2nd.Edition.1491903899.pdf")
-file:books_notes/oreilly_21st_century_c_2015_2nd_ed.txt
+books_notes/oreilly_21st_century_c_2015_2nd_ed.txt
 
 (pdf-open-file "/home/seba/c_workspace_books/c/C_Quick_Syntax_Reference.pdf")
 
@@ -336,8 +336,8 @@ unzip -p *.docx word/document.xml | sed -e 's/<\/w:p>/\n/g; s/<[^>]\{1,\}>//g; s
 
 unfortunatelly it does not support shared team drives ??
 
-file:~/notas/gdrive.txt
-file:~/notas/gdrive_worklog.txt
+~/notas/gdrive.txt
+~/notas/gdrive_worklog.txt
 
 gdrive [global] export [options] <fileId>                      Export a google document
 
@@ -363,17 +363,17 @@ Imported 1mTl3DjIvap4tpTX_oMkDcbDT8ShtiGJRlozTfkXpeko with mime type: 'applicati
 
 VIDEO - Python A-Z - Learn Python Programming By Building 5 Projects
 https://subscription.packtpub.com/video/programming/9781839212956
-file:~/c_workspace_host/books_notes/video_python_a-z_Learn_Python_Programming_By_Building_5_Projects.txt
+~/c_workspace_host/books_notes/video_python_a-z_Learn_Python_Programming_By_Building_5_Projects.txt
 
 
 Introducing Python, 2nd ed
 https://learning.oreilly.com/library/view/introducing-python-2nd/9781492051374/preface01.html
-file:~/c_workspace_host/books_notes/introducing_python_2nd_ed.txt
+~/c_workspace_host/books_notes/introducing_python_2nd_ed.txt
 
 
 Achieving DevOps: A Novel About Delivering the Best of Agile, DevOps, and Microservices
 https://learning.oreilly.com/library/view/achieving-devops-a/9781484243886/
-file:~/c_workspace_host/books_notes/achieving_devops.txt
+~/c_workspace_host/books_notes/achieving_devops.txt
 
 The DevOps Handbook
 https://learning.oreilly.com/library/view/the-devops-handbook/9781457191381/DOHB-ch_02.xhtml
@@ -429,7 +429,7 @@ https://learning.oreilly.com/library/view/wicked-cool-shell/9781492018322/
 
 Learning DevOps (Oct 2019)
 https://learning.oreilly.com/library/view/learning-devops/9781838642730/
-file:books_notes/learning_devops_2019.txt
+books_notes/learning_devops_2019.txt
 Hace mucho enfasis en Azure, cada capitlo tiene un ejemplo con Azure.
 
 
@@ -554,9 +554,9 @@ https://learning.oreilly.com/topics/c/
 https://learning.oreilly.com/library/view/modern-c/9781617295812/kindle_split_005.html
 
 book notes
-file:~/c_workspace_host/books_notes/manning_modern_c_dec_2019.txt
+~/c_workspace_host/books_notes/manning_modern_c_dec_2019.txt
 
-Container Project Folder: file:~/c_workspace/c/manning_modern_c_book/
+Container Project Folder: ~/c_workspace/c/manning_modern_c_book/
 
 
 
@@ -567,10 +567,10 @@ https://subscription.packtpub.com/book/application_development/9781849519427
 
 https://developer.gnome.org/
 
-Project Folder: file:~/c_workspace/gtk3/
+Project Folder: ~/c_workspace/gtk3/
 
 GNOME3
-file:~/c_workspace/gtk3/gtk3.txt
+~/c_workspace/gtk3/gtk3.txt
 
 apt-get source  libgtk-3-0
 
