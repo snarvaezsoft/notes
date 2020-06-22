@@ -8,6 +8,30 @@ https://stackoverflow.com/questions/8840551/configuring-user-and-password-with-g
 How to save username and password in GIT [GitExtension]?
 https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension
 
+* OReilly
+
+21 Technologies for the 21st Century
+https://learning.oreilly.com/library/view/21-technologies-for/9781492090298/ch01.html
+
+Video - Introduction to Python
+https://learning.oreilly.com/videos/introduction-to-python/9781491904794
+
+Video - Intermediate Pyton Programming
+https://learning.oreilly.com/videos/intermediate-python-programming/9781491954935
+
+
+Introducing GitHub, 2nd Edition
+https://learning.oreilly.com/library/view/introducing-github-2nd/9781491981801/
+
+If you’re new to GitHub, this concise book shows you just what you need to get started and no more. It’s perfect for project and product managers, stakeholders, and other team members who want to collaborate on a development project—whether it’s to review and comment on work in progress or to contribute specific changes. It’s also great for developers just learning GitHub.
+
+Video - Learning GitHub
+https://learning.oreilly.com/videos/learning-path-github/9781491972069/9781491972069-video257724
+
+
+YouTube Math Channel - 3Blue1Brown
+https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw
+
 
 * Packt Books
 

@@ -4,6 +4,8 @@
 
 * WordPress Links to documentation
 
+https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions
+
 https://codex.wordpress.org/
 
 http://hookr.io

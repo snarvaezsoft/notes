@@ -7,6 +7,10 @@ This is where I brainstorm ideas to publish later ...
 
 * TODO
 
+cd Kindle\ Library\ \(Final\)/
+calibre --with-library  .
+
+
 Start with a fresh notes folder, store it on github,  gradually curate and add rest of notes.
 
 merge draft2 into main notes.  Clean and then commit to github account.
