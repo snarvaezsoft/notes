@@ -1,5 +1,10 @@
 #+TITLE: Bookmarks / Links
 
+* Kindle unlimited catalog of elegible books:
+
+https://www.amazon.com/b?node=9069934011&tag=efly01-20
+
+
 * github
 
 Configuring user and password with Git Bash
@@ -7,6 +12,9 @@ https://stackoverflow.com/questions/8840551/configuring-user-and-password-with-g
 
 How to save username and password in GIT [GitExtension]?
 https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension
+
+https://levelup.gitconnected.com/5-technologies-to-pick-up-during-quarantine-and-improve-your-software-engineering-skillset-68bd766bee9c
+
 
 * OReilly
 
@@ -31,6 +39,47 @@ https://learning.oreilly.com/videos/learning-path-github/9781491972069/978149197
 
 YouTube Math Channel - 3Blue1Brown
 https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw
+
+
+Think Stats, 2nd Edition
+https://learning.oreilly.com/library/view/think-stats-2nd/9781491907344/
+
+If you know how to program, you have the skills to turn data into knowledge, using tools of probability and statistics. This concise introduction shows you how to perform statistical analysis computationally, rather than mathematically, with programs written in Python. You’ll learn the entire process of exploratory data analysis—from collecting data and generating statistics to identifying patterns and testing hypotheses.
+
+
+Think Bayes
+https://learning.oreilly.com/library/view/think-bayes/9781491945407/
+
+If you know how to program with Python, and know a little about probability, you’re ready to tackle Bayesian statistics. This book shows you how to use Python code instead of math to help you learn Bayesian fundamentals. Once you get the math out of the way, you’ll be able to apply these techniques to real-world problems.
+
+
+Videos - Linear Algebra
+https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/
+
+Data Science from Scratch, 2nd Edition
+https://learning.oreilly.com/library/view/data-science-from/9781492041122/
+
+To really learn data science, you should not only master the tools—data science libraries, frameworks, modules, and toolkits—but also understand the ideas and principles underlying them. Updated for Python 3.6, this second edition of Data Science from Scratch shows you how these tools and algorithms work by implementing them from scratch.
+
+News and Media Literacy
+https://www.commonsensemedia.org/news-and-media-literacy/what-is-media-literacy-and-why-is-it-important
+
+
+The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers
+https://www.amazon.com/Hard-Thing-About-Things-Building/dp/0062273205
+
+Team of Teams: New Rules of Engagement for a Complex World
+https://www.amazon.com/Team-Teams-Rules-Engagement-Complex/dp/1591847486
+
+
+Phishing for Phools
+https://medium.com/wordsthatmatter/phishing-for-phools-ad31b127cfa6
+
+https://www.amazon.com/Phishing-Phools-Economics-Manipulation-Deception/dp/0691168318/
+
+WTF?: What's the Future and Why It's Up to Us
+https://learning.oreilly.com/library/view/wtf-whats-the/9780062565723/
+
 
 
 * Packt Books
