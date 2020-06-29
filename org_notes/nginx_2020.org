@@ -11,6 +11,12 @@ How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu 20.04
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04
 
 
+https://guides.wp-bullet.com/protect-wordpress-wp-login-nginx-http-auth-fail2ban/
+
+
+Understanding server blocks and location matches
+
+https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms
 
 * Nginx Proxy/Forward example config
 

@@ -52,7 +52,8 @@ https://subscription.packtpub.com/video/programming/9781800564145
 C and C++ BOOKS  (several 2020)
 https://subscription.packtpub.com/search?language=c~c%2B%2B
 
-
+Learn C Programming  (June 2020)
+https://subscription.packtpub.com/book/programming/9781789349917
 
 Practical C programming  - Feb 2020
 https://subscription.packtpub.com/book/programming/9781838641108
