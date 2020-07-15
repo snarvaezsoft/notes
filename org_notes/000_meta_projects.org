@@ -6,8 +6,7 @@ https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-i
 
 sync c_workspace on all computers
 
-the concept is to be able to download those folders to a new computer
-and recreate the complete environment again with minimal effort
+the concept is to be able to download those folders to a new computer and recreate the complete environment again with minimal effort
 
 rclone copy --dry-run --progress  ~/c_workspace_host  sebapwbgl:/c_workspace_host
 
@@ -44,6 +43,13 @@ d10tr.local:10.0
 
 Python Fundamentals - Deitel   45hs
 https://learning.oreilly.com/videos/python-fundamentals/9780135917411
+
+
+The Linux Command Line, 2nd Ed.
+https://learning.oreilly.com/library/view/the-linux-command/9781492071235/xhtml/intro.xhtml
+
+Accelerate - the science behind DevOps
+https://learning.oreilly.com/library/view/accelerate/9781457191435/05-content.xhtml
 
 
 C/C++ Pointers and Applications
