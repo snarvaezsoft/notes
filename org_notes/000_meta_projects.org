@@ -44,6 +44,9 @@ d10tr.local:10.0
 Python Fundamentals - Deitel   45hs
 https://learning.oreilly.com/videos/python-fundamentals/9780135917411
 
+Python for programmers
+https://learning.oreilly.com/library/view/python-for-programmers/9780135231364/ch01.xhtml
+
 
 The Linux Command Line, 2nd Ed.
 https://learning.oreilly.com/library/view/the-linux-command/9781492071235/xhtml/intro.xhtml

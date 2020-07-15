@@ -1,0 +1,28 @@
+#+TITLE: The Linux Command Line, 2nd Edition
+
+
+https://learning.oreilly.com/library/view/the-linux-command/9781492071235/xhtml/part01.xhtml
+
+* Part 1 - Learnig the shell
+
+ls -l /bin/usr > ls-output.txt 2>&1
+
+Recent versions of bash provide a second, more streamlined method for performing this combined redirection, shown here:
+
+ls -l /bin/usr &> ls-output.txt
+
+In this example, we use the single notation &> to redirect both standard output and standard error to the file ls-output.txt. You may also append the standard output and standard error streams to a single file like so:
+
+ls -l /bin/usr &>> ls-output.txt
+
+Disposing of Unwanted Output
+
+Sometimes “silence is golden” and we don’t want output from a command; we just want to throw it away. This applies particularly to error and status messages. The system provides a way to do this by redirecting output to a special file called /dev/null. This file is a system device often referred to as a bit bucket, which accepts input and does nothing with it. To suppress error messages from a command, we do this:
+
+[me@linuxbox ~]$ ls -l /bin/usr 2> /dev/null
+
+
+
+command1 > file1
+
+command1 | command2
