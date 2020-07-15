@@ -1,0 +1,51 @@
+# Accelerate - The Science behind DevOps
+
+The capabilities are classified into five categories:
+
+- Continuos delivery
+- Architecture
+- Product and process
+- Lean management and monitoring
+- Cultural
+
+Continuous Delivery Capabilities
+
+- Version control
+- Deployment automation
+- Continuous integration
+- Trunk-based development
+- Test automation
+- Test data management
+- Shift left on security
+- Continuous delivery (CD)
+
+Architecture Capabilities
+- Loosely coupled architecture
+- Empowered teams
+
+Product and process capabilities
+- Customer feedback
+- Value stream
+- Working in small batches
+- Team experimentation
+
+Lean Management and monitoring capabilities
+- Change approval processes
+- Monitoring
+- Proactive notification
+- WIP limits
+- Visualizing work
+
+Cultural Capabilities
+- Westrum organizational culture
+- Supporting learning
+- Collaboration among teams
+- Job Satisfaction
+- Transformational leadership
+
+
+Software and technology are key differentiators for organizations to deliver value to customers and stakeholders.
+
+a recent study by James Bessen of Boston University found that the strategic use of technology explains revenue and productivity gains more than mergers and acquisitions (M&A) and entrepreneurship (2017).
+
+Andrew McAfee and Erik Brynjolfsson have also found a link between technology and profitability (2008).

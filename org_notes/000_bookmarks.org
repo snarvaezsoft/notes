@@ -21,6 +21,14 @@ https://levelup.gitconnected.com/5-technologies-to-pick-up-during-quarantine-and
 21 Technologies for the 21st Century
 https://learning.oreilly.com/library/view/21-technologies-for/9781492090298/ch01.html
 
+
+EntrePreneurship list
+https://learning.oreilly.com/playlists/deb1ae06-6506-4362-b8da-ee71c72f306a/
+
+Lessons from Giants
+https://learning.oreilly.com/playlists/bd747aba-67d8-4218-8eb6-10b80951e766/
+
+
 Video - Introduction to Python
 https://learning.oreilly.com/videos/introduction-to-python/9781491904794
 
