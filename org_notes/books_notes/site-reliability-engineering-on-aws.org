@@ -1,0 +1,29 @@
+#+TITLE: Site Reliability Engineering on AWS
+
+https://github.com/PacktPublishing/Site-Reliability-Engineering-on-AWS
+
+
+
+https://landing.google.com/sre/sre-book/toc/index.html
+https://landing.google.com/sre/workbook/toc/
+https://aws.amazon.com/devops/
+https://www.youtube.com/watch?v=Psl4pcONtol
+
+
+SRE Principles / DevOps
+https://en.wikipedia.org/wiki/Site_Reliability_Engineering
+
+
+Reduce organizational Silos
+  SRE shares ownership with devel9opers to create shared responsibility
+  SREs use the same tools that developers use and vice versa
+Implement gradual changes
+  SRE encourages developers and product owners to move quickly by reducing the cost of failure
+Measure everything
+  SRE defines prescriptive ways to measure values
+  SRE fundamentally believes that systems operation is a software problem
+Accept failure as normal
+  Indicators (SLIs) ans Service Level Objectives (SLOs)
+  SRE mandates blameless post-mortems
+Leverage tooling and automation
+  SREs have a charter to automate menial tasks (called "toil") away

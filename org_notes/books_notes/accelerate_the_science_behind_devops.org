@@ -1,4 +1,4 @@
-# Accelerate - The Science behind DevOps
+#+TITLE: Accelerate - The Science behind DevOps
 
 The capabilities are classified into five categories:
 
@@ -49,3 +49,25 @@ Software and technology are key differentiators for organizations to deliver val
 a recent study by James Bessen of Boston University found that the strategic use of technology explains revenue and productivity gains more than mergers and acquisitions (M&A) and entrepreneurship (2017).
 
 Andrew McAfee and Erik Brynjolfsson have also found a link between technology and profitability (2008).
+
+
+==================================================
+
+Capabilities to drive improvement
+
+
+
+Continuous Delivery Capabilities
+
+- Version control
+  Use version control for all production artifacts, including application code, application configurations, system configurations, and scripts for automating build and configuration of the environment.
+
+- Deployment automation
+
+
+- Continuous integration
+- Trunk-based development
+- Test automation
+- Test data management
+- Shift left on security
+- Continuous delivery (CD)

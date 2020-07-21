@@ -1,0 +1,98 @@
+#+TITLE: Kubernetes for Absolute Beginners - Hands on
+#+PROPERTY: header-args:sh :tangle "example.sh" :shebang "#!/bin/bash" :padline no :tangle-mode (identity #o755)
+
+then run org-babel-tangle
+
+https://subscription.packtpub.com/video/application_development/9781838555962/p1/video1_1/introduction
+
+
+Docker for the absolute beginner
+https://subscription.packtpub.com/video/application-development/9781788991315
+
+
+* Kubernetes Overview
+
+- Containers - Docker
+- Container Orchestration?
+- Demo - Setup Kubernetes
+- Kubernetes Concepts - PODs | ReplicaSets | Deployment | Services
+- Networking in Kubernetes
+- Kubernetes Management - Kubctl
+- Kubernetes Definition Files - YAML
+- Kubernetes on Cloud - AWS/GCP
+
+
+* Kubernetes or K8s
+
+#+BEGIN_SRC sh
+docker run ansible
+docker run mongodb
+docker run redis
+docker run nodejs
+#+END_SRC
+
+
+* Lab environment on Virtual Box
+==============================
+
+https://www.osboxes.org/
+
+# hit tab after following expression to automatically create a source block:
+<s
+
+
+* Orchestration Technologies
+
+- Docker Swarm
+- Kubernetes
+- MESOS
+
+
+* Kubernetes Architecture
+
+Nodes: A node is a machine, either physical or virtual, where docker containers will be launched by kubernetes.
+
+Cluster: Set of nodes gruped together.
+
+Master: A node configured as master.  Resposible for the orchestration.
+
+Components:
+-API Server
+-etcd  distributed, reliable key value store
+-kubelet    make sure the containers are running
+-container runtime (docker)
+-controller  the brain behind the orchestration
+-scheduler
+
+
+Master Node
+- kube-apiserver
+- etcd
+- controller
+- scheduler
+
+
+Worker Node
+- Kubelet
+- Container runtime
+
+==================================================
+
+* kubectl
+
+kubectl run hello-minikube
+kubectl cluster-info
+kubectl get nodes
+
+
+* Kubernetes Setup - Introduction and Minikube
+
+
+Minikube:  Single Node Kubernetes Cluster
+           ISO image can be downloaded and installed on VirtualBox
+
+
+http://kubernetes.io
+
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
