@@ -1,0 +1,192 @@
+#+TITLE: Docker Hub notes
+
+
+
+https://hub.docker.com/r/bitnami/magento
+
+
+
+https://hub.docker.com/r/magentoomitsis/nginx-fpm7.3-magento
+https://hub.docker.com/r/magentoomitsis/nginx-fpm7.3-magento/dockerfile
+Nginx + Php7.3-fpm image with xdebug (enabled by default) and customized for magento 2.3       (Updated 8 months ago)
+
+
+https://hub.docker.com/_/php
+
+https://hub.docker.com/_/composer
+
+
+https://hub.docker.com/_/wordpress
+
+wordpress:5.4.2-apache
+
+wordpress:5.4.2-fpm
+
+
+
+
+
+
+How to use this image
+
+$ docker run --name some-wordpress --network some-network -d wordpress
+
+The following environment variables are also honored for configuring your WordPress instance:
+
+    -e WORDPRESS_DB_HOST=...
+    -e WORDPRESS_DB_USER=...
+    -e WORDPRESS_DB_PASSWORD=...
+    -e WORDPRESS_DB_NAME=...
+    -e WORDPRESS_TABLE_PREFIX=...
+    -e WORDPRESS_AUTH_KEY=..., -e WORDPRESS_SECURE_AUTH_KEY=..., -e WORDPRESS_LOGGED_IN_KEY=..., -e WORDPRESS_NONCE_KEY=..., -e WORDPRESS_AUTH_SALT=..., -e WORDPRESS_SECURE_AUTH_SALT=..., -e WORDPRESS_LOGGED_IN_SALT=..., -e WORDPRESS_NONCE_SALT=... (default to unique random SHA1s, but only if other environment variable configuration is provided)
+    -e WORDPRESS_DEBUG=1 (defaults to disabled, non-empty value will enable WP_DEBUG in wp-config.php)
+    -e WORDPRESS_CONFIG_EXTRA=... (defaults to nothing, non-empty value will be embedded verbatim inside wp-config.php -- especially useful for applying extra configuration values this image does not provide by default such as WP_ALLOW_MULTISITE; see docker-library/wordpress#142 for more details)
+
+
+If you'd like to be able to access the instance from the host without the container's IP, standard port mappings can be used:
+
+$ docker run --name some-wordpress -p 8080:80 -d wordpress
+
+Then, access it via http://localhost:8080 or http://host-ip:8080 in a browser.
+
+
+
+==================================================
+
+
+https://hub.docker.com/r/magento/magento-cloud-docker-php
+Magento Cloud Docker is a package—part of the Magento Cloud Suite—designed to develop, test, and deploy your Magento Commerce store. The Magento Cloud Docker implementation deploys Cloud projects to a local workstation so that you can develop and test your code in a simulated Cloud environment.
+
+
+
+Varnish is an HTTP accelerator designed for content-heavy dynamic web sites as well as APIs.
+https://hub.docker.com/_/varnish
+
+Jobber is an alternative to cron, with sophisticated status-reporting and error-handling.
+https://hub.docker.com/_/jobber
+
+
+
+Elasticsearch - powerful open source search and analytics engine that makes data easy to explore.
+https://hub.docker.com/_/elasticsearch
+
+
+
+
+https://hub.docker.com/_/logstash
+Logstash is a tool for managing events and logs.
+
+
+https://hub.docker.com/_/mediawiki
+
+
+Gnu Compiler Collection
+https://hub.docker.com/_/gcc
+
+
+irssi - The IRC client of the future
+https://hub.docker.com/_/irssi
+
+Postfix Admin - web based administration interface for Postfix mail servers.
+https://hub.docker.com/_/postfixadmin
+
+
+https://hub.docker.com/_/fluentd
+Fluentd is a streaming data collector for unified logging layer hosted by CNCF. Fluentd lets you unify the data collection and consumption for a better use and understanding of data.
+
+
+
+https://hub.docker.com/_/gitlab-enterprise-edition
+GitLab unifies issues, code review, CI and CD into a single UI
+
+
+
+
+* via docker stack deploy or docker-compose
+
+https://hub.docker.com/_/wordpress
+
+Example stack.yml for wordpress:
+
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
+
+Try in PWD
+
+Run docker stack deploy -c stack.yml wordpress (or docker-compose -f stack.yml up), wait for it to initialize completely, and visit http://swarm-ip:8080, http://localhost:8080, or http://host-ip:8080 (as appropriate).
+
+
+
+* via docker stack deploy or docker-compose
+
+Example stack.yml for mediawiki:
+
+# MediaWiki with MariaDB
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+version: '3'
+services:
+  mediawiki:
+    image: mediawiki
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - database
+    volumes:
+      - /var/www/html/images
+      # After initial setup, download LocalSettings.php to the same directory as
+      # this yaml and uncomment the following line and use compose to restart
+      # the mediawiki service
+      # - ./LocalSettings.php:/var/www/html/LocalSettings.php
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+      MYSQL_DATABASE: my_wiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+
+
+Run docker stack deploy -c stack.yml mediawiki (or docker-compose -f stack.yml up), wait for it to initialize completely, and visit http://swarm-ip:8080, http://localhost:8080, or http://host-ip:8080 (as appropriate).
+
+
+* worklog
+
+
+sudo docker stack deploy -c stack.yml  wordpress
+Ignoring unsupported options: restart
+
+this node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again
