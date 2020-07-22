@@ -18,6 +18,7 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 
+#+BEGIN_SRC sh
 
 # Note: running the commands as regular user:
 
@@ -49,6 +50,8 @@ kubeconfig: Configured
 
 
 $ minikube stop
+
+#+END_SRC
 
 
 - Clean up local state
